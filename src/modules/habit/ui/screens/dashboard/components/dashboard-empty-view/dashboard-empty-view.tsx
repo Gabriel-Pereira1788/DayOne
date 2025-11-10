@@ -3,8 +3,18 @@ import { router } from "expo-router";
 
 export function DashboardEmptyView() {
   return (
-    <Box flex={1} alignItems="center" justifyContent="center" gap="sp10">
-      <Text text="Nenhum hábito criado" />
+    <Box
+      flex={1}
+      alignItems="center"
+      justifyContent="center"
+      gap="sp10"
+      px="sp20"
+    >
+      <Text
+        text="Create a new Habit to start."
+        preset="bold/30"
+        align="center"
+      />
       <Button
         text="New Habit"
         variant="outline"

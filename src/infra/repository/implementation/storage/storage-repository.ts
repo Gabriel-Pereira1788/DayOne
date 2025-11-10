@@ -71,6 +71,9 @@ class StorageRepository<Data = unknown> implements IBaseRepository<Data> {
 
     const filteredData = data.filter((item) => {
       return Object.entries(filter).every(([key, value]) => {
+        if (typeof value === "number") {
+          return (item as any)[key as keyof typeof item] === value;
+        }
         if (typeof value === "string") {
           return (item as any)[key as keyof typeof item]
             .toString()

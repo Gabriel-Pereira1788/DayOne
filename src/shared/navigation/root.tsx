@@ -2,6 +2,13 @@ import { Stack } from "expo-router";
 import { Page } from "../layout";
 import { Modal } from "../services/modal/context";
 
+function isGradientEnabled(routeName: string) {
+  if (routeName === "(app)/habit-details/[id]/index" || routeName === "(app)/new-habit")
+    return false;
+
+  return true;
+}
+
 export function RootStack() {
   return (
     <Stack
@@ -10,7 +17,7 @@ export function RootStack() {
       }}
       screenLayout={({ children, route }) => (
         <Page
-          gradientEnabled={route.name !== "(app)/new-habit"}
+          gradientEnabled={isGradientEnabled(route.name)}
           disablePadding={{
             top: route.name === "(app)/new-habit",
             horizontal: route.name === "(app)/dashboard",
@@ -25,6 +32,7 @@ export function RootStack() {
       )}
     >
       <Stack.Screen name="(app)/dashboard" />
+      <Stack.Screen name="(app)/habit-details/[id]/index" />
 
       <Stack.Screen
         options={{

@@ -4,7 +4,7 @@ import { getStreakService } from "./get-streak.service";
 
 export function useGetStreaks(habitId: string) {
   const { data, isLoading } = useQuery({
-    queryKey: [StreaksQueryKeys.GET_STREAKS],
+    queryKey: [StreaksQueryKeys.GET_STREAKS,habitId],
     queryFn: () => getStreakService(habitId),
   });
 

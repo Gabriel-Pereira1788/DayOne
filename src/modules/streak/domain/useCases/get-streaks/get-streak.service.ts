@@ -38,10 +38,6 @@ export async function getStreakService(habitId: string): Promise<StreakData> {
   const longestStreak = calculateLongestStreak(uniqueDates);
   const isActiveToday = isCompletedToday(uniqueDates);
 
-  console.log("CURRENT-STREAK", currentStreak);
-  console.log("LONGEST-STREAK", longestStreak);
-  console.log("IS-ACTIVE-TODAY", isActiveToday);
-
   return {
     habitId,
     currentStreak,

@@ -43,15 +43,12 @@ export function useWeeklyStreakData({
       currentDate.setHours(0, 0, 0, 0);
 
       // Verifica se o usuário completou o streak neste dia
+
       const hasStreak = streakData?.completedDates
         ? streakData.completedDates.some((completedDate) => {
             const completed = new Date(completedDate);
+            completed.setHours(0, 0, 0, 0);
 
-            // console.log(
-            //   "COMPLETED",
-            //   `${completed.getFullYear()}-${completed.getMonth()}-${completed.getDate()}`,
-            //   `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`,
-            // );
             return (
               completed.getFullYear() === currentDate.getFullYear() &&
               completed.getMonth() === currentDate.getMonth() &&

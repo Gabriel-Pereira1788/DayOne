@@ -10,6 +10,7 @@ type Props = {
 };
 export function useStreakCardController({ habitId, habitTitle }: Props) {
   const { streaks, isLoading } = useGetStreaks(habitId);
+
   const weekData = useWeeklyStreakData({ streakData: streaks });
 
   function openCheckHandler() {

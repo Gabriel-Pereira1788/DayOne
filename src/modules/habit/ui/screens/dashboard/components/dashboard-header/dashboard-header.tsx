@@ -9,6 +9,7 @@ import { IconPress } from "@/shared/ui/Icon";
 
 const ITEM_WIDTH = dimensions.width - 20;
 export function DashboardHeader({ habits }: DashboardHeaderProps) {
+
   return (
     <Box width={"100%"} gap="sp10" mb="sp10">
       <Box
@@ -17,11 +18,9 @@ export function DashboardHeader({ habits }: DashboardHeaderProps) {
         gap="sp20"
         px="sp20"
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent="flex-end"
       >
-        <Box width={'70%'}>
-          <Text text="👋 Bom dia, Gabriel!" preset="bold/30" />
-        </Box>
+
         <IconPress iconName="plus" size={35} weight="bold" onPress={() => {
           router.navigate("/(app)/new-habit")
         }} />
@@ -30,6 +29,7 @@ export function DashboardHeader({ habits }: DashboardHeaderProps) {
       <Box px="sp20" mt="sp12">
         <Text text="Streaks" preset="semiBold/24" />
       </Box>
+
 
       <FlatList
         horizontal

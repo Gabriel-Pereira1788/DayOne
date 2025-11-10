@@ -16,6 +16,7 @@ export function DashboardScreen() {
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<Habit>) => (
       <TouchableBounce
+        onPress={() => controller.redirectToHabitDetails(item.id)}
         boxProps={{
           marginHorizontal: "sp20",
         }}
@@ -26,11 +27,13 @@ export function DashboardScreen() {
     [],
   );
 
+  if (!controller.isLoading && controller.habits?.length === 0) {
+    return <DashboardEmptyView />;
+  }
   return (
     <Box flex={1} alignItems="center" justifyContent="center">
       <FlatList
         data={controller.habits}
-        ListEmptyComponent={<DashboardEmptyView />}
         ListHeaderComponent={
           <DashboardHeader habits={controller.habits || []} />
         }
@@ -40,7 +43,7 @@ export function DashboardScreen() {
         contentContainerStyle={{
           flexGrow: 1,
           gap: 10,
-          paddingBottom:30
+          paddingBottom: 30,
         }}
         renderItem={renderItem}
       />
