@@ -2,6 +2,18 @@
   "expo": {
     "name": "DayOne",
     "slug": "DayOne",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "scheme": "dayone",
+    "userInterfaceStyle": "automatic",
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "android": {
+      "package": "com.bytebuilder123.DayOne"
+    },
+    "ios": {
+      "bundleIdentifier": "com.bytebuilder123.DayOne"
+    }
   }
 }
