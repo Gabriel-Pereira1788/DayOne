@@ -7,6 +7,7 @@ export const theme = createTheme({
     backgroundTertiary: palette.background.tertiary,
     surfacePrimary: palette.surface.primary,
     surfaceSecondary: palette.surface.secondary,
+    surfaceTertiary: palette.surface.tertiary,
     surfaceBorder: palette.surface.border,
     textPrimary: palette.text.primary,
     textSecondary: palette.text.secondary,

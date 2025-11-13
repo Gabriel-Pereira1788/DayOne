@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		6A88E3B000AAD361B3096A95 /* libPods-DayOne.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 760A6CB8E9BF0C7B8A73B13C /* libPods-DayOne.a */; };
+		849EC1F17FD73FCF9C4BC012 /* libPods-DayOne.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8D46E3855BDA54AFD913088 /* libPods-DayOne.a */; };
 		A895966203EC0F8C08E4C415 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E232ECFEAC9AC02711E03E2 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
@@ -22,14 +22,14 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = DayOne/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = DayOne/Info.plist; sourceTree = "<group>"; };
 		2E232ECFEAC9AC02711E03E2 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-DayOne/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		6650E38874BCCD834C57A643 /* Pods-DayOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOne.release.xcconfig"; path = "Target Support Files/Pods-DayOne/Pods-DayOne.release.xcconfig"; sourceTree = "<group>"; };
-		760A6CB8E9BF0C7B8A73B13C /* libPods-DayOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DayOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DFA4D7F1B41A10711B3EE5B /* Pods-DayOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOne.debug.xcconfig"; path = "Target Support Files/Pods-DayOne/Pods-DayOne.debug.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = DayOne/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ED5CA462F6ADDBBE6D4A0D06 /* Pods-DayOne.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOne.debug.xcconfig"; path = "Target Support Files/Pods-DayOne/Pods-DayOne.debug.xcconfig"; sourceTree = "<group>"; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = DayOne/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* DayOne-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "DayOne-Bridging-Header.h"; path = "DayOne/DayOne-Bridging-Header.h"; sourceTree = "<group>"; };
+		F8D46E3855BDA54AFD913088 /* libPods-DayOne.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DayOne.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCC009EFEA49BAFF6A174CC8 /* Pods-DayOne.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DayOne.release.xcconfig"; path = "Target Support Files/Pods-DayOne/Pods-DayOne.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A88E3B000AAD361B3096A95 /* libPods-DayOne.a in Frameworks */,
+				849EC1F17FD73FCF9C4BC012 /* libPods-DayOne.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				760A6CB8E9BF0C7B8A73B13C /* libPods-DayOne.a */,
+				F8D46E3855BDA54AFD913088 /* libPods-DayOne.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -75,11 +75,11 @@
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
-		4BC5B2920DCA6AA4CEFAEE26 /* Pods */ = {
+		4A20C3F47EA47481D07C6FF2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ED5CA462F6ADDBBE6D4A0D06 /* Pods-DayOne.debug.xcconfig */,
-				6650E38874BCCD834C57A643 /* Pods-DayOne.release.xcconfig */,
+				6DFA4D7F1B41A10711B3EE5B /* Pods-DayOne.debug.xcconfig */,
+				FCC009EFEA49BAFF6A174CC8 /* Pods-DayOne.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -100,7 +100,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				2D6FA49E8BF02989B46C6848 /* ExpoModulesProviders */,
-				4BC5B2920DCA6AA4CEFAEE26 /* Pods */,
+				4A20C3F47EA47481D07C6FF2 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -139,14 +139,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "DayOne" */;
 			buildPhases = (
-				D15E1FE681677489C3D06BE6 /* [CP] Check Pods Manifest.lock */,
+				EC2D5310884188FB2B8EE1A1 /* [CP] Check Pods Manifest.lock */,
 				A3ACA59A67FA41C25DEFF6B3 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				4ED53CD9F53AADEF9E853B14 /* [CP] Embed Pods Frameworks */,
-				4A1F33814AC2A2AFF2975373 /* [CP] Copy Pods Resources */,
+				8DA6C0A4F180C88E0E4B7CAF /* [CP] Embed Pods Frameworks */,
+				1460E5DA4109721F29247BFA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -220,7 +220,7 @@
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n`\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
 		};
-		4A1F33814AC2A2AFF2975373 /* [CP] Copy Pods Resources */ = {
+		1460E5DA4109721F29247BFA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -248,7 +248,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DayOne/Pods-DayOne-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4ED53CD9F53AADEF9E853B14 /* [CP] Embed Pods Frameworks */ = {
+		8DA6C0A4F180C88E0E4B7CAF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -296,7 +296,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-DayOne/expo-configure-project.sh\"\n";
 		};
-		D15E1FE681677489C3D06BE6 /* [CP] Check Pods Manifest.lock */ = {
+		EC2D5310884188FB2B8EE1A1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -335,7 +335,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED5CA462F6ADDBBE6D4A0D06 /* Pods-DayOne.debug.xcconfig */;
+			baseConfigurationReference = 6DFA4D7F1B41A10711B3EE5B /* Pods-DayOne.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -371,7 +371,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6650E38874BCCD834C57A643 /* Pods-DayOne.release.xcconfig */;
+			baseConfigurationReference = FCC009EFEA49BAFF6A174CC8 /* Pods-DayOne.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

@@ -1,12 +1,12 @@
 import { Box, Icon, IconProps, TouchableOpacityBox } from "@/shared/ui";
 import { IconsSelection } from "@/shared/ui/Icon/IconsSelection";
 import { useState } from "react";
-import { NewHabitIconSelectionProps } from "./types";
+import { HabitIconSelectionProps } from "./types";
 import { modalService } from "@/shared/services/modal";
 
-export function NewHabitIconSelection({
+export function HabitIconSelection({
   onChangeIcon,
-}: NewHabitIconSelectionProps) {
+}: HabitIconSelectionProps) {
   const [selectedIcon, setSelectedIcon] = useState<
     IconProps["iconName"] | null
   >(null);

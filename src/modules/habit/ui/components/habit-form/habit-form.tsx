@@ -1,8 +1,8 @@
 import { Box, Card, FormInput, Icon, Text } from "@/shared/ui";
 
-import { NewHabitFormProps } from "./types";
+import { HabitFormProps } from "./types";
 
-export function NewHabitForm({ control }: NewHabitFormProps) {
+export function HabitForm({ control }: HabitFormProps) {
   return (
     <Box gap="sp15">
       <FormInput

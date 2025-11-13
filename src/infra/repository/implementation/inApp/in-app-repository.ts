@@ -46,9 +46,10 @@ class InAppRepository<Data = unknown> implements IBaseRepository<Data> {
     const updatedData = dataList.map((item) =>
       item.id === id ? { ...item, ...data } : item,
     );
+
     mockRepository.set(this.collection, updatedData);
 
-    return data as unknown as Data;
+    return updatedData.find((item) => item.id === id) as unknown as Data;
   }
 
   public async delete(id: string) {

@@ -5,18 +5,18 @@ import { useNewHabitController } from "./new-habit.controller";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 
 import { NewHabitHeader } from "./components/new-habit-header";
-import { NewHabitForm } from "./components/new-habit-form";
-import { NewHabitIconSelection } from "./components/new-habit-icon-selection";
+import { HabitForm } from "../../components/habit-form";
+import { HabitIconSelection } from "../../components/habit-icon-selection";
 
 export function NewHabitScreen() {
   const controller = useNewHabitController();
 
   return (
     <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
-      <NewHabitIconSelection onChangeIcon={controller.handleSetIconValue} />
+      <HabitIconSelection onChangeIcon={controller.handleSetIconValue} />
       <NewHabitHeader />
 
-      <NewHabitForm control={controller.control} />
+      <HabitForm control={controller.control} />
 
       <Box gap="sp12">
         <Button

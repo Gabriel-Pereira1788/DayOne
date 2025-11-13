@@ -28,6 +28,9 @@ import Calendar from 'phosphor-react-native/src/icons/Calendar';
 import CalendarDots from 'phosphor-react-native/src/icons/CalendarDots';
 import Smiley from 'phosphor-react-native/src/icons/Smiley';
 import Barbell from 'phosphor-react-native/src/icons/Barbell';
+import Trash from 'phosphor-react-native/src/icons/Trash';
+import PintGlass from 'phosphor-react-native/src/icons/PintGlass';
+import Pencil from 'phosphor-react-native/src/icons/Pencil';
 import {IconProps} from '../Icon';
 
 export const mappedIcons = {
@@ -60,6 +63,9 @@ export const mappedIcons = {
   barbell:Barbell,
   calendarDots: CalendarDots,
   smiley: Smiley,
+  trash:Trash,
+  pintGlass:PintGlass,
+  pencil:Pencil,
   x: X,
 };
 

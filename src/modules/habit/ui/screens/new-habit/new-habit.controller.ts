@@ -1,10 +1,12 @@
 import { useCreateNewHabit } from "@/modules/habit/domain/useCases/create-new-habit";
-import { HabitDTO } from "@/modules/habit/domain/habit.model";
+
 import { router } from "expo-router";
-import { useForm } from "react-hook-form";
+
 import { useNewHabitForm } from "./hooks/useNewHabitForm";
-import { NewHabitSchema } from "./library/new-habit-schema";
+
 import { Alert } from "react-native";
+import { HabitSchema } from "../../components/habit-form/library/habit-schema";
+import { IconProps } from "@/shared/ui";
 
 export interface NewHabitFormData {
   title: string;
@@ -27,14 +29,14 @@ export function useNewHabitController() {
     onSubmit: handleSubmit,
   });
 
-  function handleSubmit(data: NewHabitSchema) {
+  function handleSubmit(data: HabitSchema) {
     createNewHabit({
       ...data,
       targetDurationInDays: parseInt(data.targetDurationInDays),
     });
   }
 
-  function handleSetIconValue(icon: string) {
+  function handleSetIconValue(icon: IconProps['iconName']) {
     setValue("icon", icon);
   }
 

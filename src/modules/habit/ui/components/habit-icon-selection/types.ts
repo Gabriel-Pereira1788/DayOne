@@ -1,5 +1,5 @@
 import { IconProps } from "@/shared/ui";
 
-export interface NewHabitIconSelectionProps {
+export interface HabitIconSelectionProps {
   onChangeIcon: (iconName: IconProps["iconName"]) => void;
 }

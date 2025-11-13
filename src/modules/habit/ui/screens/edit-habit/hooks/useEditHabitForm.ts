@@ -8,14 +8,11 @@ import {
 
 type Props = {
   onSubmit: (data: HabitSchema) => void;
+  initialData: HabitSchema;
 };
-export function useNewHabitForm({ onSubmit }: Props) {
+export function useEditHabitForm({ onSubmit, initialData }: Props) {
   const { control, handleSubmit, watch, setValue } = useForm<HabitSchema>({
-    defaultValues: {
-      title: "",
-      description: "",
-      targetDurationInDays: "30",
-    },
+    defaultValues: initialData,
     mode: "onChange",
     resolver: zodResolver(habitSchema),
   });

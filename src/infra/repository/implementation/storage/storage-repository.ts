@@ -46,7 +46,7 @@ class StorageRepository<Data = unknown> implements IBaseRepository<Data> {
     );
     storage.setItem(this.collection, updatedData);
 
-    return data as unknown as Data;
+    return updatedData.find((item) => item.id === id) as unknown as Data;
   }
 
   public async delete(id: string) {

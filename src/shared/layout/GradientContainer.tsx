@@ -5,6 +5,7 @@ import { PageProps } from "./Page";
 type Props = {
   disablePadding?: PageProps["disablePadding"];
 };
+
 export function GradientContainer({
   disablePadding,
   children,

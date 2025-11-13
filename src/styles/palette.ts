@@ -10,6 +10,7 @@ export const palette = {
   surface: {
     primary: '#141414', // Cards principais, blocos de conteúdo
     secondary: '#1E1E1E', // Inputs, botões secundários, modal backgrounds
+    tertiary:"#C2ACFC",
     border: '#2E2E2E', // Bordas sutis, linhas divisórias
   },
 
@@ -25,7 +26,7 @@ export const palette = {
   states: {
     success: '#B8B8B8', // Leve destaque (sem cor vibrante)
     warning: '#999999',
-    error: '#7A7A7A',
+    error: '#d20f39',
     info: '#AAAAAA',
   },
 

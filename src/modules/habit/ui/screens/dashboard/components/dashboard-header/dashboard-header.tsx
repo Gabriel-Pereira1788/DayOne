@@ -21,7 +21,7 @@ export function DashboardHeader({ habits }: DashboardHeaderProps) {
         justifyContent="flex-end"
       >
 
-        <IconPress iconName="plus" size={35} weight="bold" onPress={() => {
+        <IconPress iconName="plus"  size={35} weight="bold" onPress={() => {
           router.navigate("/(app)/new-habit")
         }} />
       </Box>
