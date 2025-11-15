@@ -1,29 +1,38 @@
-import React from 'react';
+import React from "react";
 
-import {IconWeight} from 'phosphor-react-native/lib/typescript/index';
+import { IconWeight } from "phosphor-react-native/lib/typescript/index";
 
-import {buildIcon, mappedIcons} from './library/buildIcon';
-import {useTheme} from '@/shared/helpers/hooks';
-import {Theme} from '@/styles';
+import { buildIcon, mappedIcons } from "./library/buildIcon";
+import { useTheme } from "@/shared/helpers/hooks";
+import { Theme } from "@/styles";
 
 export type IconName = keyof typeof mappedIcons;
 export type IconProps = {
   iconName: IconName;
   size?: number;
   weight?: IconWeight;
-  color?: keyof Theme['colors'];
+  color?: keyof Theme["colors"];
   hexColor?: string;
+  testID?: string;
 };
 
 export function Icon({
   iconName,
   hexColor,
-  color = 'textPrimary',
-  weight = 'regular',
+  color = "textPrimary",
+  weight = "regular",
   size = 20,
+  testID,
 }: IconProps) {
   const IconRender = buildIcon(iconName);
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const _color = colors[color];
-  return <IconRender color={hexColor || _color} weight={weight} size={size} />;
+  return (
+    <IconRender
+      testID={testID}
+      color={hexColor || _color}
+      weight={weight}
+      size={size}
+    />
+  );
 }

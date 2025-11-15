@@ -28,13 +28,19 @@ export function HabitIconSelection({
     <Box my="sp20">
       <TouchableOpacityBox
         onPress={handleOpen}
+        testID="icon-selection-button"
         boxProps={{
           flexDirection: "row",
           alignItems: "center",
         }}
       >
         {selectedIcon ? (
-          <Icon iconName={selectedIcon} size={50} color="textSecondary" />
+          <Icon
+            testID="icon-selected-icon"
+            iconName={selectedIcon}
+            size={50}
+            color="textSecondary"
+          />
         ) : (
           <>
             <Icon

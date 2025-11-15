@@ -27,6 +27,7 @@ export function IconsSelection({ onSelect }: Props) {
       }}
       renderItem={({ item }) => (
         <TouchableOpacity
+          testID="icon-selection-modal"
           style={{ flexGrow: 1 }}
           onPress={() => {
             onSelect(item as IconProps["iconName"]);
