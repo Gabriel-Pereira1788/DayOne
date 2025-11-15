@@ -8,8 +8,6 @@ import { useCallback } from "react";
 import { Habit } from "@/modules/habit/domain/habit.model";
 import { TouchableBounce } from "@/shared/ui/Touchable";
 
-import { DashboardHeader } from "./components/dashboard-header";
-import { StreakList } from "@/modules/streak/ui/components/streak-list";
 import { DashboardStreakList } from "./components/dashboard-streak-list";
 
 export function DashboardScreen() {
@@ -18,6 +16,7 @@ export function DashboardScreen() {
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<Habit>) => (
       <TouchableBounce
+        testID="habit-card"
         onPress={() => controller.redirectToHabitDetails(item.id)}
         boxProps={{
           marginHorizontal: "sp20",

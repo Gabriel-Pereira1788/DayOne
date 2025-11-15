@@ -4,10 +4,7 @@ import { router } from "expo-router";
 import { DashboardHeaderProps } from "./types";
 import { IconPress } from "@/shared/ui/Icon";
 
-export function DashboardHeader({
-  habits,
-  handleSearch,
-}: DashboardHeaderProps) {
+export function DashboardHeader({}: DashboardHeaderProps) {
   return (
     <Box width={"100%"} gap="sp10" mb="sp10">
       <Box
@@ -19,6 +16,7 @@ export function DashboardHeader({
         justifyContent="flex-end"
       >
         <IconPress
+          testID="button-new-habit"
           iconName="plus"
           size={35}
           weight="bold"

@@ -3,9 +3,12 @@ import { BoxGradient } from "@/shared/ui/Box/BoxGradient";
 import { useAppSafeArea } from "@/shared/helpers";
 import { Theme } from "@/styles";
 import { GradientContainer } from "./GradientContainer";
+import { Icon, IconPress } from "../ui/Icon";
+import { router } from "expo-router";
 
 export type PageProps = {
   gradientEnabled?: boolean;
+  goBack?: boolean;
   backgroundColor?: keyof Theme["colors"];
   disablePadding?: {
     top?: boolean;
@@ -17,6 +20,7 @@ export type PageProps = {
 export function Page({
   children,
   backgroundColor,
+  goBack,
   gradientEnabled = false,
   disablePadding,
 }: React.PropsWithChildren<PageProps>) {
@@ -25,6 +29,17 @@ export function Page({
   if (gradientEnabled && !backgroundColor) {
     return (
       <GradientContainer disablePadding={disablePadding}>
+        {goBack && (
+          <Box width={"100%"} justifyContent="flex-start" mb="sp10">
+            <IconPress
+              testID="go-back"
+              variant="transparent"
+              size={50}
+              iconName="caretLeft"
+              onPress={router.back}
+            />
+          </Box>
+        )}
         {children}
       </GradientContainer>
     );
@@ -39,6 +54,17 @@ export function Page({
       }}
       backgroundColor={backgroundColor || "backgroundPrimary"}
     >
+      {goBack && (
+        <Box width={"100%"} justifyContent="flex-start" mb="sp10">
+          <IconPress
+            testID="go-back"
+            variant="transparent"
+            size={40}
+            iconName="caretLeft"
+            onPress={router.back}
+          />
+        </Box>
+      )}
       {children}
     </Box>
   );

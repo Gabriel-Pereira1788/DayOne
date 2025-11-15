@@ -4,11 +4,7 @@ import { StreakCalendarProps } from "./types";
 import { dimensions } from "@/shared/helpers";
 import { CalendarDay } from "./components";
 import { useStreakCalendarController } from "./streak-calendar.controller";
-import {
-  ActivityIndicator,
-  ActivityIndicatorBase,
-  TouchableOpacity,
-} from "react-native";
+import { ActivityIndicator } from "react-native";
 
 const MONTH_NAMES = [
   "Janeiro",
@@ -46,16 +42,6 @@ export function StreakCalendar({ habitId, habitIcon }: StreakCalendarProps) {
 
   const monthName = MONTH_NAMES[controller.currentDate.getMonth()];
   const year = controller.currentDate.getFullYear();
-
-  const renderWeekDays = () => (
-    <Box flexDirection="row" marginBottom="sp7">
-      {controller.monthlyData.daysOfWeek.map((day, index) => (
-        <Box key={index} flex={1} alignItems="center">
-          <Text text={day} preset="semiBold/16" color="textSecondary" />
-        </Box>
-      ))}
-    </Box>
-  );
 
   const renderCalendarDays = () => {
     const rows = [];

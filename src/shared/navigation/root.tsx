@@ -20,6 +20,7 @@ export function RootStack() {
       }}
       screenLayout={({ children, route }) => (
         <Page
+          goBack={route.name !== "(app)/dashboard"}
           gradientEnabled={isGradientEnabled(route.name)}
           disablePadding={{
             top: route.name === "(app)/new-habit",

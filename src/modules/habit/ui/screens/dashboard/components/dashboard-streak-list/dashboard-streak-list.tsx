@@ -6,6 +6,7 @@ import { DashboardHeader } from "../dashboard-header";
 
 export function DashboardStreakList() {
   const controller = useDashboardStreakListController();
+
   if (controller.isLoading) {
     return (
       <Box width={"100%"}>
@@ -15,10 +16,7 @@ export function DashboardStreakList() {
   }
   return (
     <Box>
-      <DashboardHeader
-        habits={controller.habits || []}
-        handleSearch={() => {}}
-      />
+      <DashboardHeader />
       <StreakList habits={controller.habits || []} />
     </Box>
   );

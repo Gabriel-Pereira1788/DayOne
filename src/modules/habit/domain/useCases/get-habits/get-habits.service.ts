@@ -7,5 +7,8 @@ export async function getHabitsService() {
   const habitsRepository = repositoryService.collection<Habit>(
     Collection.HABITS,
   );
-  return await habitsRepository.get();
+
+  const result = await habitsRepository.get();
+
+  return result;
 }

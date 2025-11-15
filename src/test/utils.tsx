@@ -10,11 +10,12 @@ import { inAppStorage } from "@/infra/adapters/storage/implementation/inApp";
 
 import { RootStack } from "../shared/navigation/root";
 
-import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 import { StorageKeys } from "@/infra/adapters/storage/types";
 import { QueryKeys } from "@/infra/types";
-import Dashboard from "app/(app)/dashboard";
-import NewHabit from "app/(app)/new-habit";
+import Dashboard from "../../app/(app)/dashboard";
+import NewHabit from "../../app/(app)/new-habit";
+import EditHabit from "../../app/(app)/edit-habit";
+import HabitDetails from "../../app/(app)/habit-details/[id]";
 
 const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -74,6 +75,8 @@ export function renderApp({
       _layout: () => <RootStack />,
       "(app)/dashboard": () => <Dashboard />,
       "(app)/new-habit": () => <NewHabit />,
+      "(app)/edit-habit/index": () => <EditHabit />,
+      "(app)/habit-details/[id]/index": () => <HabitDetails />,
     },
     {
       wrapper: Wrapper,

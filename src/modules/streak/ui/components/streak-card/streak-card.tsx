@@ -43,11 +43,7 @@ export function StreakCard({
     controller.streaks?.completedDates.length === 0
   ) {
     return (
-      <Box
-        width={dimensions.width}
-        justifyContent="center"
-        alignItems="center"
-      >
+      <Box width={dimensions.width} justifyContent="center" alignItems="center">
         <Card
           flexGrow={1}
           justifyContent="space-between"
@@ -63,6 +59,7 @@ export function StreakCard({
             color="textSecondary"
           />
           <Button
+            testID={`check-today-${habitId}`}
             text="Check Habit Today"
             onPress={controller.openCheckHandler}
           />
@@ -72,11 +69,7 @@ export function StreakCard({
   }
 
   return (
-    <Box
-      width={dimensions.width}
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Box width={dimensions.width} justifyContent="center" alignItems="center">
       <Card
         flexGrow={1}
         justifyContent="space-between"
@@ -101,6 +94,7 @@ export function StreakCard({
 
           {!controller.streaks?.isActiveToday && (
             <TouchableOpacity
+
               activeOpacity={0.8}
               onPress={controller.openCheckHandler}
             >
