@@ -43,68 +43,80 @@ export function StreakCard({
     controller.streaks?.completedDates.length === 0
   ) {
     return (
+      <Box
+        width={dimensions.width}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Card
+          flexGrow={1}
+          justifyContent="space-between"
+          width={dimensions.width - 40}
+          padding="sp16"
+          gap="sp10"
+          paddingVertical="sp20"
+        >
+          <Text text={habitTitle} preset="semiBold/24" color="textPrimary" />
+          <Text
+            text={"Habit not yet verified."}
+            preset="medium/20"
+            color="textSecondary"
+          />
+          <Button
+            text="Check Habit Today"
+            onPress={controller.openCheckHandler}
+          />
+        </Card>
+      </Box>
+    );
+  }
+
+  return (
+    <Box
+      width={dimensions.width}
+      justifyContent="center"
+      alignItems="center"
+    >
       <Card
         flexGrow={1}
         justifyContent="space-between"
         width={dimensions.width - 40}
         padding="sp16"
-        gap="sp10"
         paddingVertical="sp20"
       >
-        <Text text={habitTitle} preset="semiBold/24" color="textPrimary" />
-        <Text
-          text={"Habit not yet verified."}
-          preset="medium/20"
-          color="textSecondary"
-        />
-        <Button
-          text="Check Habit Today"
-          onPress={controller.openCheckHandler}
-        />
-      </Card>
-    );
-  }
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          marginBottom="sp16"
+        >
+          <Box flex={1} gap="sp10">
+            <Text
+              text={`${controller.streaks?.currentStreak || 0} Straight days`}
+              preset="semiBold/24"
+              color="textPrimary"
+            />
+            <Text text={habitTitle} preset="medium/20" color="textSecondary" />
+          </Box>
 
-  return (
-    <Card
-      flexGrow={1}
-      justifyContent="space-between"
-      width={dimensions.width - 40}
-      padding="sp16"
-      paddingVertical="sp20"
-    >
-      <Box
-        flexDirection="row"
-        justifyContent="space-between"
-        alignItems="center"
-        marginBottom="sp16"
-      >
-        <Box flex={1} gap="sp10">
-          <Text
-            text={`${controller.streaks?.currentStreak || 0} dias seguidos`}
-            preset="semiBold/24"
-            color="textPrimary"
-          />
-          <Text text={habitTitle} preset="medium/20" color="textSecondary" />
+          {!controller.streaks?.isActiveToday && (
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={controller.openCheckHandler}
+            >
+              <Badge
+                text="Check Today"
+                textProps={{
+                  preset: "semiBold/14",
+                  color: "textSecondary",
+                }}
+              />
+            </TouchableOpacity>
+          )}
         </Box>
 
-        {!controller.streaks?.isActiveToday && (
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={controller.openCheckHandler}
-          >
-            <Badge
-              text="Check Today"
-              textProps={{
-                preset: "semiBold/14",
-                color: "textSecondary",
-              }}
-            />
-          </TouchableOpacity>
-        )}
-      </Box>
-
-      {renderWeeklyStreak()}
-    </Card>
+        {renderWeeklyStreak()}
+      </Card>
+    </Box>
   );
 }

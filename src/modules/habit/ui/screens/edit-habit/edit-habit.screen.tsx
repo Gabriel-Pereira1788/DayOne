@@ -17,7 +17,7 @@ export function EditHabitScreen() {
 
   return (
     <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
-      <HabitIconSelection onChangeIcon={controller.handleSetIconValue} />
+      <HabitIconSelection onChangeIcon={controller.handleSetIconValue} defaultIcon={params.icon} />
 
       <HabitForm control={controller.control} />
 

@@ -6,10 +6,11 @@ import { modalService } from "@/shared/services/modal";
 
 export function HabitIconSelection({
   onChangeIcon,
+  defaultIcon,
 }: HabitIconSelectionProps) {
   const [selectedIcon, setSelectedIcon] = useState<
     IconProps["iconName"] | null
-  >(null);
+  >(defaultIcon || null);
 
   function handleOnChangeIcon(icon: IconProps["iconName"]) {
     setSelectedIcon(icon);

@@ -78,7 +78,7 @@ function calculateCurrentStreak(dates: Date[]): number {
   const isStreakActive =
     isSameDay(lastDate, today) || isSameDay(lastDate, yesterday);
 
-  // if (!isStreakActive) return 0;
+  if (!isStreakActive) return 0;
 
   // Conta dias consecutivos de trás para frente
   let streak = 1;

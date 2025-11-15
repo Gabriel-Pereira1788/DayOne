@@ -1,14 +1,16 @@
-import { Box } from "@/shared/ui";
+import { Box, Icon, Text, TextInput } from "@/shared/ui";
 import { useDashboardController } from "./dashboard.controller";
 
 import { FlatList, ListRenderItemInfo } from "react-native";
-import { habitListMock } from "@/modules/habit/__mocks__/habit-list.mock";
+
 import { HabitCard } from "../../components/habit-card";
 import { useCallback } from "react";
 import { Habit } from "@/modules/habit/domain/habit.model";
 import { TouchableBounce } from "@/shared/ui/Touchable";
-import { DashboardEmptyView } from "./components/dashboard-empty-view/dashboard-empty-view";
+
 import { DashboardHeader } from "./components/dashboard-header";
+import { StreakList } from "@/modules/streak/ui/components/streak-list";
+import { DashboardStreakList } from "./components/dashboard-streak-list";
 
 export function DashboardScreen() {
   const controller = useDashboardController();
@@ -27,15 +29,21 @@ export function DashboardScreen() {
     [],
   );
 
-  if (!controller.isLoading && controller.habits?.length === 0) {
-    return <DashboardEmptyView />;
-  }
   return (
     <Box flex={1} alignItems="center" justifyContent="center">
+      <DashboardStreakList />
+
       <FlatList
         data={controller.habits}
         ListHeaderComponent={
-          <DashboardHeader habits={controller.habits || []} />
+          <Box px="sp20" gap="sp10">
+            <Text text="Habits" preset="semiBold/24" />
+            <TextInput
+              placeholder="Search"
+              LeftElement={<Icon iconName="magnifyingGlass" />}
+              onChangeText={controller.handleSearch}
+            />
+          </Box>
         }
         style={{
           width: "100%",
