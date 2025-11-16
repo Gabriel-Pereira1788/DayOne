@@ -10,6 +10,7 @@ export function HabitForm({ control }: HabitFormProps) {
         control={control}
         name="title"
         placeholder="Ex: Exercise physical"
+
       />
 
       <FormInput

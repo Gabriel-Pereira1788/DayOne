@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "scheme": "dayone",
     "userInterfaceStyle": "automatic",
+    "icon": "./src/assets/brand/launch-icon.png",
     "plugins": [
       "expo-router",
       "expo-font"

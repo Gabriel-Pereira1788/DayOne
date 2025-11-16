@@ -46,9 +46,9 @@ export function TextInput(props: TextInputProps) {
         alignItems="center"
         justifyContent="space-between"
         px="sp15"
-        py="sp20"
+        py="sp15"
         borderRadius="rd15"
-        height={textInputProps.multiline ? height : 64}
+        height={textInputProps.multiline ? height : undefined}
         shadowOffset={{ width: 0, height: 1 }}
         shadowOpacity={0.1}
         shadowRadius={10}
