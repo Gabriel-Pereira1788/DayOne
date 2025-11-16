@@ -21,6 +21,18 @@
 
 DayOne is a mobile application designed to help users build and maintain daily habits through a streak-based tracking system. The app focuses on simplicity and motivation, making it easy for users to track their progress and maintain consistency in their daily routines.
 
+## 📸 Screenshots
+
+<p align="center">
+  <img src="screenshots/dashboard-screen.png" alt="Dashboard Screen" width="250"/>
+  <img src="screenshots/new-habit-screen.png" alt="New Habit Screen" width="250"/>
+  <img src="screenshots/streak-check-screen.png" alt="Streak Check Screen" width="250"/>
+</p>
+
+<p align="center">
+  <sub>Dashboard • Create New Habit • Daily Check-in</sub>
+</p>
+
 ## ✨ Features
 
 - **📊 Habit Management**: Create, edit, and organize your daily habits

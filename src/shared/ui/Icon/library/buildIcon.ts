@@ -32,6 +32,7 @@ import Trash from "phosphor-react-native/src/icons/Trash";
 import PintGlass from "phosphor-react-native/src/icons/PintGlass";
 import Pencil from "phosphor-react-native/src/icons/Pencil";
 import CaretLeft from "phosphor-react-native/src/icons/CaretLeft";
+import Book from "phosphor-react-native/src/icons/Book";
 import { IconProps } from "../Icon";
 
 export const mappedIcons = {
@@ -68,6 +69,7 @@ export const mappedIcons = {
   pintGlass: PintGlass,
   caretLeft: CaretLeft,
   pencil: Pencil,
+  book: Book,
   x: X,
 };
 
