@@ -33,6 +33,36 @@ describe("<Dashboard />", () => {
     expect(habitCards).toHaveLength(habitListMock.length);
   });
 
+  it("should be render empty view and press create button", async () => {
+    const habitRepository = repositoryService.collection(Collection.HABITS);
+    habitRepository.setMock?.([]);
+
+    renderDashboard();
+
+    const emptyViewTitle = await waitFor(() =>
+      screen.getByText("Create a new Habit to start."),
+    );
+    const createNewHabitButton = screen.getByText("Create");
+
+    expect(createNewHabitButton).toBeTruthy();
+    expect(emptyViewTitle).toBeTruthy();
+
+    //Press new habit button and redirect to create habit screen
+    fireEvent.press(createNewHabitButton);
+
+    await waitFor(() => screen.getByText("New Habit"));
+
+    //Check if the close button is visible
+    const closeButton = screen.getByTestId("close-button");
+    expect(closeButton).toBeTruthy();
+
+    //Press the close button
+    fireEvent.press(closeButton);
+
+    //Check if the dashboard screen is visible
+    await waitFor(() => screen.getByText("Habits"));
+  });
+
   it("should be redirect to habit details", async () => {
     renderDashboard();
 
@@ -102,12 +132,12 @@ describe("<Dashboard />", () => {
     //Check if the create new habit screen is visible
     await waitFor(() => screen.getByText("New Habit"));
 
-    //Check if the back button is visible
-    const backButton = screen.getByTestId("go-back");
-    expect(backButton).toBeTruthy();
+    //Check if the close button is visible
+    const closeButton = screen.getByTestId("close-button");
+    expect(closeButton).toBeTruthy();
 
     //Press the back button
-    fireEvent.press(backButton);
+    fireEvent.press(closeButton);
 
     //Check if the dashboard screen is visible
     await waitFor(() => screen.getByText("Streaks"));

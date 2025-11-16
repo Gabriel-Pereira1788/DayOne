@@ -16,7 +16,7 @@ export function DashboardEmptyView() {
         align="center"
       />
       <Button
-        text="New Habit"
+        text="Create"
         variant="outline"
         enableGradient
         onPress={() => {

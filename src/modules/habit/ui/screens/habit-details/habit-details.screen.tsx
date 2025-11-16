@@ -27,7 +27,11 @@ export function HabitDetailsScreen() {
         {controller.habit && (
           <Box alignItems="flex-start" gap="sp10" width={"80%"}>
             {controller.habit.icon && (
-              <Icon iconName={controller.habit.icon} size={50} />
+              <Icon
+                testID="habit-icon-element"
+                iconName={controller.habit.icon}
+                size={50}
+              />
             )}
             <Text text={controller.habit?.title || ""} preset="bold/40" />
             <Text
@@ -40,6 +44,7 @@ export function HabitDetailsScreen() {
 
         <Box flexDirection="row" gap="sp10">
           <IconPress
+            testID="edit-habit-button"
             tintColor="feedbackInfo"
             variant="transparent"
             onPress={controller.redirectToEditHabit}
@@ -47,6 +52,7 @@ export function HabitDetailsScreen() {
             size={30}
           />
           <IconPress
+            testID="delete-habit-button"
             tintColor="feedbackError"
             variant="transparent"
             onPress={controller.openDeleteModal}

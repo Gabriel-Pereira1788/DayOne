@@ -9,6 +9,7 @@ import { Habit } from "@/modules/habit/domain/habit.model";
 import { TouchableBounce } from "@/shared/ui/Touchable";
 
 import { DashboardStreakList } from "./components/dashboard-streak-list";
+import { DashboardEmptyView } from "./components/dashboard-empty-view";
 
 export function DashboardScreen() {
   const controller = useDashboardController();
@@ -34,6 +35,7 @@ export function DashboardScreen() {
 
       <FlatList
         data={controller.habits}
+        ListEmptyComponent={<DashboardEmptyView />}
         ListHeaderComponent={
           <Box px="sp20" gap="sp10">
             <Text text="Habits" preset="semiBold/24" />

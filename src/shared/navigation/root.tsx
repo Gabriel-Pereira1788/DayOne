@@ -12,6 +12,10 @@ function isGradientEnabled(routeName: string) {
   return true;
 }
 
+function isGoBackEnabled(routeName: string) {
+  return routeName === "(app)/habit-details/[id]/index";
+}
+
 export function RootStack() {
   return (
     <Stack
@@ -20,7 +24,7 @@ export function RootStack() {
       }}
       screenLayout={({ children, route }) => (
         <Page
-          goBack={route.name !== "(app)/dashboard"}
+          goBack={isGoBackEnabled(route.name)}
           gradientEnabled={isGradientEnabled(route.name)}
           disablePadding={{
             top: route.name === "(app)/new-habit",
@@ -36,9 +40,14 @@ export function RootStack() {
       )}
     >
       <Stack.Screen name="(app)/dashboard" />
-      <Stack.Screen name="(app)/edit-habit/index" />
       <Stack.Screen name="(app)/habit-details/[id]/index" />
 
+      <Stack.Screen
+        options={{
+          presentation: "modal",
+        }}
+        name="(app)/edit-habit/index"
+      />
       <Stack.Screen
         options={{
           presentation: "modal",

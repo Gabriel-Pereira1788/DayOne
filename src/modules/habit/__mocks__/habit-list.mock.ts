@@ -5,7 +5,7 @@ export const habitListMock: Habit[] = [
     id: "1",
     title: "Exercitar-se",
     description: "Fazer pelo menos 30 minutos de exercícios físicos",
-
+    icon: "bell",
     targetDurationInDays: 90,
     startDate: "2024-01-01",
     completed: false,
@@ -14,7 +14,7 @@ export const habitListMock: Habit[] = [
     id: "2",
     title: "Meditar",
     description: "Praticar meditação mindfulness por 10 minutos",
-
+    icon:"calendar",
     startDate: "2024-01-15",
     completed: true,
   },

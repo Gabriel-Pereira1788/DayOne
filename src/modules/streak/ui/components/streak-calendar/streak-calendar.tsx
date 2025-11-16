@@ -71,6 +71,7 @@ export function StreakCalendar({ habitId, habitIcon }: StreakCalendarProps) {
         alignItems="center"
       >
         <IconPress
+          testID="prev-month-button"
           iconName="arrowLeft"
           onPress={controller.handlePreviousMonth}
           size={24}
@@ -85,6 +86,7 @@ export function StreakCalendar({ habitId, habitIcon }: StreakCalendarProps) {
         </Box>
 
         <IconPress
+          testID="next-month-button"
           iconName="arrowRight"
           onPress={controller.handleNextMonth}
           size={24}

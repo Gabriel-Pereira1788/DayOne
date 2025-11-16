@@ -7,13 +7,31 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { NewHabitHeader } from "./components/new-habit-header";
 import { HabitForm } from "../../components/habit-form";
 import { HabitIconSelection } from "../../components/habit-icon-selection";
+import { IconPress } from "@/shared/ui/Icon";
+import { router } from "expo-router";
 
 export function NewHabitScreen() {
   const controller = useNewHabitController();
 
   return (
     <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
-      <HabitIconSelection onChangeIcon={controller.handleSetIconValue} />
+      <Box
+        width={"100%"}
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <HabitIconSelection onChangeIcon={controller.handleSetIconValue} />
+        <IconPress
+          testID="close-button"
+          iconName="x"
+          variant="transparent"
+          size={40}
+          weight="bold"
+          tintColor="textSecondary"
+          onPress={controller.close}
+        />
+      </Box>
       <NewHabitHeader />
 
       <HabitForm control={controller.control} />

@@ -40,10 +40,15 @@ export function useNewHabitController() {
     setValue("icon", icon);
   }
 
+  function close() {
+    router.back();
+  }
+
   return {
     control,
     handleSetIconValue,
     onSubmit,
     isPending,
+    close,
   };
 }
