@@ -7,7 +7,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "react-native-scheduled-notifications": ["node_modules/react-native-scheduled-notifications/src/index.ts"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

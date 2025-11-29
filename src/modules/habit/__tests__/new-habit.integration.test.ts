@@ -58,20 +58,6 @@ async function selectMonthDay(dayNumber: number) {
   fireEvent.press(monthDayButton);
 }
 
-async function openTimePicker() {
-  const timeInputField = screen.getByTestId("time-input-field");
-  fireEvent.press(timeInputField);
-
-  await waitFor(() => {
-    expect(screen.getByTestId("timepicker-done-button")).toBeTruthy();
-  });
-}
-
-async function confirmTimeSelection() {
-  const doneButton = screen.getByTestId("timepicker-done-button");
-  fireEvent.press(doneButton);
-}
-
 describe("<NewHabit />", () => {
   it("should be render new habit screen correctly", async () => {
     const {
@@ -152,12 +138,8 @@ describe("<NewHabit />", () => {
   });
 
   it("should be create new habit", async () => {
-    const {
-      iconSelectionButton,
-      buttonCreate,
-      descInput,
-      titleInput,
-    } = await renderNewHabitScreen();
+    const { iconSelectionButton, buttonCreate, descInput, titleInput } =
+      await renderNewHabitScreen();
 
     // Select icon
     fireEvent.press(iconSelectionButton);
@@ -228,9 +210,7 @@ describe("<NewHabit />", () => {
     await selectFrequency("weekly");
 
     // Check that week days selector appears
-    const mondayButton = await waitFor(() =>
-      screen.getByTestId("weekday-1"),
-    );
+    const mondayButton = await waitFor(() => screen.getByTestId("weekday-1"));
     expect(mondayButton).toBeTruthy();
 
     // Check multiple days are visible
@@ -321,12 +301,8 @@ describe("<NewHabit />", () => {
   });
 
   it("should create new habit with weekly frequency", async () => {
-    const {
-      iconSelectionButton,
-      buttonCreate,
-      descInput,
-      titleInput,
-    } = await renderNewHabitScreen();
+    const { iconSelectionButton, buttonCreate, descInput, titleInput } =
+      await renderNewHabitScreen();
 
     // Select icon
     fireEvent.press(iconSelectionButton);
@@ -372,12 +348,8 @@ describe("<NewHabit />", () => {
   });
 
   it("should create new habit with monthly frequency", async () => {
-    const {
-      iconSelectionButton,
-      buttonCreate,
-      descInput,
-      titleInput,
-    } = await renderNewHabitScreen();
+    const { iconSelectionButton, buttonCreate, descInput, titleInput } =
+      await renderNewHabitScreen();
 
     // Select icon
     fireEvent.press(iconSelectionButton);

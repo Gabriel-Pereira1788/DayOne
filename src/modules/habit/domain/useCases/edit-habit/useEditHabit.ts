@@ -25,8 +25,8 @@ export function useEditHabit(props: MutationProps<Habit>) {
         result.frequency,
         {
           id: result.id,
-          message: "Editou notificação",
-          title: "Editou",
+          message: "Did you get this done today?",
+          title: result.title,
         },
         {
           hour: result.hours,

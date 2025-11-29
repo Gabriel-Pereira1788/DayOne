@@ -18,8 +18,8 @@ export function useCreateNewHabit(config: MutationProps<Habit>) {
         data.frequency,
         {
           id: data.id,
-          message: "Teste1",
-          title: "Teste22",
+          title: data.title,
+          message: "Did you get this done today?",
         },
         {
           hour: data.hours,

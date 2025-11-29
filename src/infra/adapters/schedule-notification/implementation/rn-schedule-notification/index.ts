@@ -1,4 +1,4 @@
-import rnScheduleNotification from "react-native-scheduled-notifications";
+import rnScheduleNotification from "react-native-schedule-notification";
 import {
   Notification,
   ScheduleDate,
@@ -11,7 +11,7 @@ function schedule(
   notification: Notification,
   date: ScheduleDate,
 ) {
-  rnScheduleNotification.schedule("daily", notification, {
+  rnScheduleNotification.schedule(frequency, notification, {
     hour: date.hour,
     minute: date.minute,
     dayOfMonth: date.dayOfMonth,
