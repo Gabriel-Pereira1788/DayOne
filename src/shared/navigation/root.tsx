@@ -28,7 +28,7 @@ export function RootStack() {
           gradientEnabled={isGradientEnabled(route.name)}
           disablePadding={{
             top: route.name === "(app)/new-habit",
-            horizontal: route.name === "(app)/dashboard",
+            horizontal: route.name.includes("dashboard"),
           }}
           backgroundColor={
             route.name === "(app)/new-habit" ? "backgroundTertiary" : undefined
@@ -54,6 +54,7 @@ export function RootStack() {
         }}
         name="(app)/new-habit"
       />
+      <Stack.Screen name="(app)/ai-chat/index" />
     </Stack>
   );
 }

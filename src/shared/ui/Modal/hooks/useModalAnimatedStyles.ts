@@ -29,5 +29,5 @@ export function useModalAnimatedStyles({ translateY }: Props) {
     };
   });
 
-  return { bottomSheetStyle, backdropStyle };
+  return { bottomSheetStyle,backdropStyle };
 }

@@ -8,7 +8,6 @@ import { NewHabitHeader } from "./components/new-habit-header";
 import { HabitForm } from "../../components/habit-form";
 import { HabitIconSelection } from "../../components/habit-icon-selection";
 import { IconPress } from "@/shared/ui/Icon";
-import { router } from "expo-router";
 
 export function NewHabitScreen() {
   const controller = useNewHabitController();
@@ -34,12 +33,16 @@ export function NewHabitScreen() {
       </Box>
       <NewHabitHeader />
 
-      <HabitForm control={controller.control} />
+      <HabitForm
+        control={controller.control}
+        getValues={controller.getValues}
+        handleClearDays={controller.handleClearDays}
+        handleChangeTime={controller.handleChangeTime}
+      />
 
       <Box gap="sp12">
         <Button
           text={"Create"}
-          variant="filled"
           loading={controller.isPending}
           disabled={controller.isPending}
           enableGradient

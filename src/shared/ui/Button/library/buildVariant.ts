@@ -7,6 +7,15 @@ export function buildVariant(variant: ButtonProps["variant"]): {
   textColor: keyof Theme["colors"];
 } {
   switch (variant) {
+    case "elevated":
+      return {
+        container: {
+          backgroundColor: "buttonPrimaryBackground",
+          height: 54,
+          width: "100%",
+        },
+        textColor: "textPlaceholder",
+      };
     case "filled":
       return {
         container: {

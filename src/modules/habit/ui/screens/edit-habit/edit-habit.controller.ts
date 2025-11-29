@@ -15,36 +15,53 @@ export function useEditHabitController({ habit }: Props) {
     },
   });
 
-  const { control, onSubmit, setValue } = useEditHabitForm({
+  const {
+    control,
+    onSubmit,
+    handleChangeTime,
+    handleClearDays,
+    handleSetIconValue,
+    getValues,
+  } = useEditHabitForm({
     onSubmit: handleSubmit,
     initialData: {
       title: habit.title,
       icon: habit.icon,
+      frequency: habit.frequency,
+      time: habit.time,
+      dayOfMonth: habit.dayOfMonth,
+      dayOfWeek: habit.dayOfWeek,
       description: habit.description || "",
       targetDurationInDays: habit.targetDurationInDays?.toString() || "",
     },
   });
 
   function handleSubmit(data: HabitSchema) {
+    const [hours, minutes] = data.time.split(":").map(Number);
     editHabit({
       id: habit.id,
 
       body: {
         title: data.title,
         icon: data.icon,
+        dayOfMonth: data.dayOfMonth,
+        dayOfWeek: data.dayOfWeek,
+        frequency: data.frequency,
+        hours: hours,
+        minutes: minutes,
         description: data.description,
         targetDurationInDays: Number(data.targetDurationInDays),
       },
     });
   }
 
-  function handleSetIconValue(icon: IconProps["iconName"]) {
-    setValue("icon", icon);
-  }
-
   return {
-    control,
+    handleChangeTime,
+    handleClearDays,
     handleSetIconValue,
+    control,
+    getValues,
+
     onSubmit,
     isPending,
   };

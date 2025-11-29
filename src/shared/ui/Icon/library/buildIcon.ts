@@ -33,6 +33,8 @@ import PintGlass from "phosphor-react-native/src/icons/PintGlass";
 import Pencil from "phosphor-react-native/src/icons/Pencil";
 import CaretLeft from "phosphor-react-native/src/icons/CaretLeft";
 import Book from "phosphor-react-native/src/icons/Book";
+import Sparkle from "phosphor-react-native/src/icons/Sparkle";
+import Clock from "phosphor-react-native/src/icons/Clock";
 import { IconProps } from "../Icon";
 
 export const mappedIcons = {
@@ -64,12 +66,14 @@ export const mappedIcons = {
   calendar: Calendar,
   barbell: Barbell,
   calendarDots: CalendarDots,
+  clock: Clock,
   smiley: Smiley,
   trash: Trash,
   pintGlass: PintGlass,
   caretLeft: CaretLeft,
   pencil: Pencil,
   book: Book,
+  sparkle: Sparkle,
   x: X,
 };
 

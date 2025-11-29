@@ -75,7 +75,7 @@ export function HabitCard({ habit }: HabitCardProps) {
           {targetDurationInDays && (
             <Text
               preset="regular/10"
-              text={`${targetDurationInDays} dias`}
+              text={`${targetDurationInDays} days`}
               color={completed ? "textTertiary" : "textSecondary"}
             />
           )}

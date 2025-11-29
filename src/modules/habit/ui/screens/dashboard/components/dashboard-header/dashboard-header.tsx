@@ -3,6 +3,7 @@ import { router } from "expo-router";
 
 import { DashboardHeaderProps } from "./types";
 import { IconPress } from "@/shared/ui/Icon";
+import { NitroGlassView } from "react-native-nitro-glass";
 
 export function DashboardHeader({}: DashboardHeaderProps) {
   return (
@@ -10,7 +11,7 @@ export function DashboardHeader({}: DashboardHeaderProps) {
       <Box
         flexDirection="row"
         width={"100%"}
-        gap="sp20"
+        gap="sp5"
         px="sp20"
         alignItems="center"
         justifyContent="flex-end"
@@ -22,6 +23,15 @@ export function DashboardHeader({}: DashboardHeaderProps) {
           weight="bold"
           onPress={() => {
             router.navigate("/(app)/new-habit");
+          }}
+        />
+        <IconPress
+          testID="button-ai"
+          iconName="sparkle"
+          size={35}
+          weight="bold"
+          onPress={() => {
+            router.navigate("/(app)/ai-chat");
           }}
         />
       </Box>

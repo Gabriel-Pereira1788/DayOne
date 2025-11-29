@@ -1,7 +1,9 @@
+import { inAppScheduleNotification } from "@/infra/adapters/schedule-notification/implementation/inApp/in-app-schedule-notification";
 import { inAppStorage } from "@/infra/adapters/storage/implementation/inApp";
 import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 
 import { setRepositoryService } from "@/shared/services/repository/repository.service";
+import { setScheduleNotification } from "@/shared/services/schedule-notification";
 
 import { setStorage } from "@/shared/services/storage";
 
@@ -17,3 +19,4 @@ jest.mock("react-native-keyboard-controller", () =>
 
 setStorage(inAppStorage);
 setRepositoryService(inAppRepositoryBuilder);
+setScheduleNotification(inAppScheduleNotification);

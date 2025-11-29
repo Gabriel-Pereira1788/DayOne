@@ -5,6 +5,7 @@ import { Theme } from "@/styles";
 import { GradientContainer } from "./GradientContainer";
 import { Icon, IconPress } from "../ui/Icon";
 import { router } from "expo-router";
+import { ProgressiveBlurView } from "@sbaiahmed1/react-native-blur";
 
 export type PageProps = {
   gradientEnabled?: boolean;

@@ -3,6 +3,8 @@ import { useGetStreaks } from "@/modules/streak/domain/useCases/get-streaks";
 import { useWeeklyStreakData } from "./hooks";
 import { modalService } from "@/shared/services/modal";
 import { CheckStreakHandler } from "../check-streak-handler";
+import { useEffect } from "react";
+import { scheduleNotification } from "@/shared/services/schedule-notification";
 
 type Props = {
   habitId: HabitId;
@@ -18,6 +20,16 @@ export function useStreakCardController({ habitId, habitTitle }: Props) {
       content: <CheckStreakHandler habitTitle={habitTitle} habitId={habitId} />,
     });
   }
+
+  useEffect(() => {
+    const unsubscribe = scheduleNotification.addListener((id) => {
+      if (id === habitId) {
+        openCheckHandler();
+      }
+    });
+
+    return unsubscribe;
+  }, []);
   return {
     streaks,
     isLoading,

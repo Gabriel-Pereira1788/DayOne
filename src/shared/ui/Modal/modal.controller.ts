@@ -1,5 +1,5 @@
 import { dimensions, useAppSafeArea } from "@/shared/helpers";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Gesture } from "react-native-gesture-handler";
 import { useSharedValue, withSpring } from "react-native-reanimated";
 import { scheduleOnRN } from "react-native-worklets";
@@ -8,6 +8,7 @@ import { CLOSE_THRESHOLD, VELOCITY_THRESHOLD } from "./constants";
 
 export function useModalController({ onClose, visible }: ModalProps) {
   const { top } = useAppSafeArea();
+
   const contentHeight = useRef(0);
   const maxHeight = dimensions.height - 50 - top;
 
@@ -49,6 +50,7 @@ export function useModalController({ onClose, visible }: ModalProps) {
     panGesture,
     maxHeight,
     translateY,
+
     contentHeight,
   };
 }

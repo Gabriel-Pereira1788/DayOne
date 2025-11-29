@@ -3,6 +3,7 @@ import { Habit, HabitDTO, HabitId } from "../../habit.model";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { editHabitService } from "./edit-habit.service";
 import { HabitQueryKeys } from "@/modules/habit/types";
+import { scheduleNotification } from "@/shared/services/schedule-notification";
 
 export function useEditHabit(props: MutationProps<Habit>) {
   const queryClient = useQueryClient();
@@ -19,6 +20,21 @@ export function useEditHabit(props: MutationProps<Habit>) {
       queryClient.invalidateQueries({
         queryKey: [HabitQueryKeys.GET_HABITS],
       });
+
+      scheduleNotification.schedule(
+        result.frequency,
+        {
+          id: result.id,
+          message: "Editou notificação",
+          title: "Editou",
+        },
+        {
+          hour: result.hours,
+          minute: result.minutes,
+          dayOfMonth: result.dayOfMonth,
+          dayOfWeek: result.dayOfWeek,
+        },
+      );
       props.onSuccess?.();
     },
     onError: (error) => {

@@ -22,10 +22,15 @@ export function useHabitDetailsController() {
   }
 
   function redirectToEditHabit() {
+    const time = `${String(habit?.hours).padStart(2, "0")}:${String(habit?.minutes).padStart(2, "0")}`;
     router.push({
       pathname: "/edit-habit",
       params: {
         id: id,
+        time,
+        frequency: habit?.frequency || "",
+        dayOfMonth: habit?.dayOfMonth,
+        dayOfWeek: habit?.dayOfWeek,
         title: habit?.title || "",
         description: habit?.description || "",
         icon: habit?.icon || "",

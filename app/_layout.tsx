@@ -9,10 +9,13 @@ import { storageRepositoryBuilder } from "@/infra/repository/implementation/stor
 import { setStorage } from "@/shared/services/storage/storage.service";
 import { mmkvImpl } from "@/infra/adapters/storage/implementation/mmkv";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { setScheduleNotification } from "../src/shared/services/schedule-notification";
+import { rnScheduleNotificationImpl } from "@/infra/adapters/schedule-notification/implementation/rn-schedule-notification";
 export const queryClient = new QueryClient();
 
 setRepositoryService(storageRepositoryBuilder);
 setStorage(mmkvImpl);
+setScheduleNotification(rnScheduleNotificationImpl);
 
 export default function RootLayout() {
   return (

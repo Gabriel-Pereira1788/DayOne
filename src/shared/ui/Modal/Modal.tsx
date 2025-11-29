@@ -17,6 +17,7 @@ export function Modal(props: ModalProps) {
   const { config, visible, onClose } = props;
   const { contentHeight, panGesture, translateY, maxHeight } =
     useModalController(props);
+
   const { backdropStyle, bottomSheetStyle } = useModalAnimatedStyles({
     translateY,
   });
@@ -61,7 +62,6 @@ export function Modal(props: ModalProps) {
               borderTopRightRadius="rd40"
               style={bottomSheetStyle}
             >
-              {/* Indicador visual para arrastar */}
               <Box
                 width={50}
                 height={5}

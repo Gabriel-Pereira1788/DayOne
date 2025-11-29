@@ -6,7 +6,6 @@ import { useNewHabitForm } from "./hooks/useNewHabitForm";
 
 import { Alert } from "react-native";
 import { HabitSchema } from "../../components/habit-form/library/habit-schema";
-import { IconProps } from "@/shared/ui";
 
 export interface NewHabitFormData {
   title: string;
@@ -25,19 +24,26 @@ export function useNewHabitController() {
     },
   });
 
-  const { control, onSubmit, setValue } = useNewHabitForm({
+  const {
+    control,
+    onSubmit,
+    setValue,
+    getValues,
+    handleChangeTime,
+    handleClearDays,
+    handleSetIconValue,
+  } = useNewHabitForm({
     onSubmit: handleSubmit,
   });
 
   function handleSubmit(data: HabitSchema) {
+    const [hours, minutes] = data.time.split(":");
     createNewHabit({
       ...data,
+      hours: parseInt(hours),
+      minutes: parseInt(minutes),
       targetDurationInDays: parseInt(data.targetDurationInDays),
     });
-  }
-
-  function handleSetIconValue(icon: IconProps['iconName']) {
-    setValue("icon", icon);
   }
 
   function close() {
@@ -46,9 +52,12 @@ export function useNewHabitController() {
 
   return {
     control,
+    handleChangeTime,
+    handleClearDays,
     handleSetIconValue,
     onSubmit,
     isPending,
     close,
+    getValues,
   };
 }

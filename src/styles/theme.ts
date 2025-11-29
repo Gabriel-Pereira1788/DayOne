@@ -27,6 +27,13 @@ export const theme = createTheme({
     buttonGhostText: palette.button.ghost.text,
     buttonGhostHoverBackground: palette.button.ghost.hoverBackground,
 
+    buttonElevatedBackgroundStart: palette.button.elevated.backgroundStart,
+    buttonElevatedBackgroundEnd: palette.button.elevated.backgroundEnd,
+    buttonElevatedBackgroundHoverStart: palette.button.elevated.hoverStart,
+    buttonElevatedBackgroundHoverEnd: palette.button.elevated.hoverEnd,
+    buttonElevatedDisabledStart: palette.button.elevated.disabledStart,
+    buttonElevatedDisabledEnd: palette.button.elevated.disabledEnd,
+
     feedbackError: palette.states.error,
     feedbackWarning: palette.states.warning,
     feedbackSuccess: palette.states.success,

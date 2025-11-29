@@ -1,8 +1,6 @@
-import { Box, Icon, Text, TextInput } from "@/shared/ui";
+import { Box, Button, Icon, Text, TextInput } from "@/shared/ui";
 import { useDashboardController } from "./dashboard.controller";
-
 import { FlatList, ListRenderItemInfo } from "react-native";
-
 import { HabitCard } from "../../components/habit-card";
 import { useCallback } from "react";
 import { Habit } from "@/modules/habit/domain/habit.model";
@@ -10,6 +8,7 @@ import { TouchableBounce } from "@/shared/ui/Touchable";
 
 import { DashboardStreakList } from "./components/dashboard-streak-list";
 import { DashboardEmptyView } from "./components/dashboard-empty-view";
+import { ProgressiveBlurView } from "@sbaiahmed1/react-native-blur";
 
 export function DashboardScreen() {
   const controller = useDashboardController();
@@ -30,7 +29,7 @@ export function DashboardScreen() {
   );
 
   return (
-    <Box flex={1} alignItems="center" justifyContent="center">
+    <Box flex={1} alignItems="center" justifyContent="center" pt="sp28">
       <DashboardStreakList />
 
       <FlatList
@@ -52,7 +51,7 @@ export function DashboardScreen() {
         contentContainerStyle={{
           flexGrow: 1,
           gap: 10,
-          paddingBottom: 30,
+          paddingBottom:50
         }}
         renderItem={renderItem}
       />

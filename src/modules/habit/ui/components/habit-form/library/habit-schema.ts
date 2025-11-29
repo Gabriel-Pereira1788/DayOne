@@ -18,6 +18,15 @@ export const habitSchema = z.object({
   targetDurationInDays: z.string().min(1).max(3, {
     message: "Target duration limit",
   }),
+  frequency: z.enum(["daily", "weekly", "monthly"]).default("daily"),
+  dayOfWeek: z.number().min(0).max(6).optional(),
+  dayOfMonth: z.number().min(1).max(31).optional(),
+  time: z
+    .string({
+      required_error: "Time is required",
+    })
+    .min(1)
+    .max(5),
 });
 
 export type HabitSchema = z.infer<typeof habitSchema>;

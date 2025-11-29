@@ -5,6 +5,7 @@ import Animated from "react-native-reanimated";
 import { Icon, IconProps } from "@/shared/ui/Icon";
 import { Box } from "@/shared/ui/Box";
 import { Text } from "../Text/Text";
+import { NitroGlassView } from "react-native-nitro-glass";
 
 type TabBarItemProps = {
   iconName: IconProps["iconName"];
@@ -37,7 +38,7 @@ export function TabBarItem({
       <Icon
         iconName={iconName}
         color={focused ? "textPrimary" : "textSecondary"}
-        size={25}
+        size={30}
       />
       <Box mt="sp5">
         <Text

@@ -1,8 +1,9 @@
-import { MutationProps} from "@/infra/types";
+import { MutationProps } from "@/infra/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Habit, HabitDTO } from "../../habit.model";
 import { createNewHabitService } from "./create-new-habit.service";
 import { HabitQueryKeys } from "@/modules/habit/types";
+import { scheduleNotification } from "@/shared/services/schedule-notification";
 
 export function useCreateNewHabit(config: MutationProps<Habit>) {
   const queryClient = useQueryClient();
@@ -13,6 +14,20 @@ export function useCreateNewHabit(config: MutationProps<Habit>) {
       queryClient.invalidateQueries({
         queryKey: [HabitQueryKeys.GET_HABITS],
       });
+      scheduleNotification.schedule(
+        data.frequency,
+        {
+          id: data.id,
+          message: "Teste1",
+          title: "Teste22",
+        },
+        {
+          hour: data.hours,
+          minute: data.minutes,
+          dayOfMonth: data.dayOfMonth,
+          dayOfWeek: data.dayOfWeek,
+        },
+      );
       config.onSuccess?.(data);
     },
     onError: (error) => {

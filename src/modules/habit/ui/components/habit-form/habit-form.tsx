@@ -1,8 +1,40 @@
-import { Box, Card, FormInput, Icon, Text } from "@/shared/ui";
-
+import {
+  Box,
+  Card,
+  FormInput,
+  Icon,
+  Text,
+  TouchableOpacityBox,
+} from "@/shared/ui";
+import { FrequencySelector } from "./components/frequency-selector";
 import { HabitFormProps } from "./types";
+import { TimePicker } from "@/shared/ui/TimePicker";
+import { modalService } from "@/shared/services/modal";
 
-export function HabitForm({ control }: HabitFormProps) {
+export function HabitForm({
+  control,
+  handleClearDays,
+  getValues,
+  handleChangeTime,
+}: HabitFormProps) {
+  function onOpenTimePicker() {
+    const time = getValues("time");
+    const [hour, minute] = time.split(":").map(Number);
+
+    modalService.open({
+      content: (
+        <TimePicker
+          initialHour={hour}
+          initialMinute={minute}
+          onConfirm={(hour, minute) => {
+            handleChangeTime(
+              `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`,
+            );
+          }}
+        />
+      ),
+    });
+  }
   return (
     <Box gap="sp15">
       <FormInput
@@ -10,7 +42,6 @@ export function HabitForm({ control }: HabitFormProps) {
         control={control}
         name="title"
         placeholder="Ex: Exercise physical"
-
       />
 
       <FormInput
@@ -24,16 +55,36 @@ export function HabitForm({ control }: HabitFormProps) {
         }}
       />
 
-      <FormInput
-        title="Duration (days)"
-        control={control}
-        name="targetDurationInDays"
-        placeholder="30"
-        keyboardType="number-pad"
-        leftIconProps={{
-          iconName: "calendar",
-        }}
-      />
+      <FrequencySelector control={control} handleClearDays={handleClearDays} />
+      <Box gap="sp10" mt="sp10">
+        <Text
+          preset="semiBold/14"
+          text="Set Time to schedule"
+          color="textPrimary"
+        />
+
+        <TouchableOpacityBox
+          testID="time-input-field"
+          activeOpacity={0.8}
+          onPress={onOpenTimePicker}
+          boxProps={{
+            flexDirection: "row",
+            gap: "sp10",
+            alignItems: "center",
+          }}
+        >
+          <FormInput
+            control={control}
+            name="time"
+            editable={false}
+            pointerEvents="none"
+            leftIconProps={{
+              iconName: "clock",
+            }}
+            placeholder="11:11"
+          />
+        </TouchableOpacityBox>
+      </Box>
       <Card
         marginBottom="sp25"
         borderLeftWidth={3}
