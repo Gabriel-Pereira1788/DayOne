@@ -1,9 +1,5 @@
-import { Text } from "@/shared/ui";
+import AiChatScreen from "@/modules/ai/ui/screens/ai-chat";
 
 export default function AiChat() {
-  return (
-    <>
-      <Text text="AiChat" />
-    </>
-  );
+  return <AiChatScreen />;
 }

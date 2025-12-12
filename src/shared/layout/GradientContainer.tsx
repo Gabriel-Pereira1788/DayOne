@@ -18,6 +18,7 @@ export function GradientContainer({
       startPoint={{ x: 0, y: 0 }}
       endPoint={{ x: 1, y: 1 }}
       paddingHorizontal={!disablePadding?.horizontal ? "sp20" : undefined}
+
       style={{
         paddingTop: !disablePadding?.top ? top : undefined,
         paddingBottom: !disablePadding?.bottom ? bottom : undefined,

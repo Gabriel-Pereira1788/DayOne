@@ -19,6 +19,9 @@ export function TouchableBounce({
     <TouchableAnimated
       activeOpacity={1}
       style={{
+        width:boxProps?.width,
+        borderCurve:"continuous",
+        boxShadow:'0 5px 10px rgba(0,0,0,0.2)',
         transitionDuration: 100,
         transitionTimingFunction: "ease-in",
         transitionProperty: "transform",

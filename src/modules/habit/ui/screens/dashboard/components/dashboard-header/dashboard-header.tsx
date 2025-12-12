@@ -1,9 +1,8 @@
-import { Box, Button, IconProps, Text, TextInput } from "@/shared/ui";
+import { Box } from "@/shared/ui";
 import { router } from "expo-router";
 
 import { DashboardHeaderProps } from "./types";
 import { IconPress } from "@/shared/ui/Icon";
-import { NitroGlassView } from "react-native-nitro-glass";
 
 export function DashboardHeader({}: DashboardHeaderProps) {
   return (
@@ -11,7 +10,7 @@ export function DashboardHeader({}: DashboardHeaderProps) {
       <Box
         flexDirection="row"
         width={"100%"}
-        gap="sp5"
+        gap="sp15"
         px="sp20"
         alignItems="center"
         justifyContent="flex-end"
@@ -19,6 +18,7 @@ export function DashboardHeader({}: DashboardHeaderProps) {
         <IconPress
           testID="button-new-habit"
           iconName="plus"
+          variant="transparent"
           size={35}
           weight="bold"
           onPress={() => {
@@ -27,6 +27,7 @@ export function DashboardHeader({}: DashboardHeaderProps) {
         />
         <IconPress
           testID="button-ai"
+          variant="transparent"
           iconName="sparkle"
           size={35}
           weight="bold"
@@ -34,10 +35,6 @@ export function DashboardHeader({}: DashboardHeaderProps) {
             router.navigate("/(app)/ai-chat");
           }}
         />
-      </Box>
-
-      <Box px="sp20" mt="sp12">
-        <Text text="Streaks" preset="semiBold/24" />
       </Box>
     </Box>
   );

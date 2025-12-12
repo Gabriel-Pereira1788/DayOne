@@ -18,7 +18,7 @@ export function useModalAnimatedStyles({ translateY }: Props) {
 
   const backdropStyle = useAnimatedStyle(() => {
     const opacity = interpolate(
-      translateY.value,
+      Math.max(0, translateY.value), // Garante que nunca seja negativo
       [0, CLOSE_THRESHOLD],
       [0.6, 0],
       Extrapolation.CLAMP,
@@ -28,6 +28,7 @@ export function useModalAnimatedStyles({ translateY }: Props) {
       backgroundColor: `rgba(0, 0, 0, ${opacity})`,
     };
   });
+
 
   return { bottomSheetStyle,backdropStyle };
 }

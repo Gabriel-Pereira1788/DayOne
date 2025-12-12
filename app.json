@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "DayOne",
+    "name": "DayOne - Habit Tracker",
     "slug": "DayOne",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "scheme": "dayone",
     "userInterfaceStyle": "automatic",
     "icon": "./src/assets/brand/launch-icon.png",
@@ -26,7 +26,7 @@
       "package": "com.bytebuilder123.DayOne"
     },
     "ios": {
-      "bundleIdentifier": "com.bytebuilder123.DayOne"
+      "bundleIdentifier": "com.bytebuilder123.DayOneHabitTracker"
     }
   }
 }

@@ -11,6 +11,8 @@ import { mmkvImpl } from "@/infra/adapters/storage/implementation/mmkv";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { setScheduleNotification } from "../src/shared/services/schedule-notification";
 import { rnScheduleNotificationImpl } from "@/infra/adapters/schedule-notification/implementation/rn-schedule-notification";
+import { LLMProvider } from "@/shared/services/llm";
+import { execuTorchImpl } from "@/infra/adapters/llm/implementation/executorch";
 export const queryClient = new QueryClient();
 
 setRepositoryService(storageRepositoryBuilder);
@@ -23,8 +25,10 @@ export default function RootLayout() {
       <GestureHandlerRootView>
         <KeyboardProvider>
           <ThemeProvider theme={theme}>
-            <StatusBar style="light" />
-            <RootStack />
+            <LLMProvider llmService={execuTorchImpl}>
+              <StatusBar style="light" />
+              <RootStack />
+            </LLMProvider>
           </ThemeProvider>
         </KeyboardProvider>
       </GestureHandlerRootView>

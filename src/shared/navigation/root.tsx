@@ -23,20 +23,29 @@ export function RootStack() {
         headerShown: false,
       }}
       screenLayout={({ children, route }) => (
-        <Page
-          goBack={isGoBackEnabled(route.name)}
-          gradientEnabled={isGradientEnabled(route.name)}
-          disablePadding={{
-            top: route.name === "(app)/new-habit",
-            horizontal: route.name.includes("dashboard"),
-          }}
-          backgroundColor={
-            route.name === "(app)/new-habit" ? "backgroundTertiary" : undefined
-          }
-        >
-          {children}
+        <>
+          <Page
+            goBack={isGoBackEnabled(route.name)}
+            gradientEnabled={isGradientEnabled(route.name)}
+            disablePadding={{
+              top:
+                route.name === "(app)/new-habit" ||
+                route.name === "(app)/ai-chat/index",
+              bottom: route.name === "(app)/ai-chat/index",
+              horizontal:
+                route.name.includes("dashboard") ||
+                route.name === "(app)/ai-chat/index",
+            }}
+            backgroundColor={
+              route.name === "(app)/new-habit"
+                ? "backgroundTertiary"
+                : undefined
+            }
+          >
+            {children}
+          </Page>
           <ModalProvider />
-        </Page>
+        </>
       )}
     >
       <Stack.Screen name="(app)/dashboard" />

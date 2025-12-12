@@ -1,8 +1,7 @@
 import { StreakList } from "@/modules/streak/ui/components/streak-list";
 import { useDashboardStreakListController } from "./dashboard-streak-list.controller";
 import { ActivityIndicator } from "react-native";
-import { Box } from "@/shared/ui";
-import { DashboardHeader } from "../dashboard-header";
+import { Box, Text } from "@/shared/ui";
 
 export function DashboardStreakList() {
   const controller = useDashboardStreakListController();
@@ -16,7 +15,9 @@ export function DashboardStreakList() {
   }
   return (
     <Box>
-      <DashboardHeader />
+      <Box px="sp20" marginVertical="sp12">
+        <Text text="Streaks" preset="semiBold/24" />
+      </Box>
       <StreakList habits={controller.habits || []} />
     </Box>
   );

@@ -5,24 +5,32 @@ import { modalService } from "@/shared/services/modal";
 import { CheckStreakHandler } from "../check-streak-handler";
 import { useEffect } from "react";
 import { scheduleNotification } from "@/shared/services/schedule-notification";
+import { StreakCardProps } from "./types";
 
-type Props = {
-  habitId: HabitId;
-  habitTitle: string;
-};
-export function useStreakCardController({ habitId, habitTitle }: Props) {
+export function useStreakCardController({
+  habitId,
+  habitTitle,
+  habitIcon,
+}: StreakCardProps) {
   const { streaks, isLoading } = useGetStreaks(habitId);
 
   const weekData = useWeeklyStreakData({ streakData: streaks });
 
   function openCheckHandler() {
     modalService.open({
-      content: <CheckStreakHandler habitTitle={habitTitle} habitId={habitId} />,
+      content: (
+        <CheckStreakHandler
+          habitTitle={habitTitle}
+          habitId={habitId}
+          habitIcon={habitIcon}
+        />
+      ),
     });
   }
 
   useEffect(() => {
     const unsubscribe = scheduleNotification.addListener((id) => {
+      console.log("ID", id);
       if (id === habitId) {
         openCheckHandler();
       }

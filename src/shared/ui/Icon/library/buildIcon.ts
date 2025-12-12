@@ -1,5 +1,7 @@
 import ArrowLeft from "phosphor-react-native/src/icons/ArrowLeft";
 import ArrowRight from "phosphor-react-native/src/icons/ArrowRight";
+import ArrowDown from "phosphor-react-native/src/icons/ArrowDown";
+import ArrowUp from "phosphor-react-native/src/icons/ArrowUp";
 import Check from "phosphor-react-native/src/icons/Check";
 import DoorOpen from "phosphor-react-native/src/icons/DoorOpen";
 import Email from "phosphor-react-native/src/icons/Envelope";
@@ -26,6 +28,7 @@ import Palette from "phosphor-react-native/src/icons/Palette";
 import Lightbulb from "phosphor-react-native/src/icons/Lightbulb";
 import Calendar from "phosphor-react-native/src/icons/Calendar";
 import CalendarDots from "phosphor-react-native/src/icons/CalendarDots";
+import CalendarPlus from "phosphor-react-native/src/icons/CalendarPlus";
 import Smiley from "phosphor-react-native/src/icons/Smiley";
 import Barbell from "phosphor-react-native/src/icons/Barbell";
 import Trash from "phosphor-react-native/src/icons/Trash";
@@ -35,6 +38,8 @@ import CaretLeft from "phosphor-react-native/src/icons/CaretLeft";
 import Book from "phosphor-react-native/src/icons/Book";
 import Sparkle from "phosphor-react-native/src/icons/Sparkle";
 import Clock from "phosphor-react-native/src/icons/Clock";
+import Microphone from "phosphor-react-native/src/icons/Microphone";
+import Brain from "phosphor-react-native/src/icons/Brain";
 import { IconProps } from "../Icon";
 
 export const mappedIcons = {
@@ -55,6 +60,8 @@ export const mappedIcons = {
   placeHolder: PlaceHolder,
   bell: Bell,
   arrowRight: ArrowRight,
+  arrowDown: ArrowDown,
+  arrowUp: ArrowUp,
   phone: Phone,
   paperPlaneRight: PaperPlaneRight,
   plus: Plus,
@@ -66,6 +73,7 @@ export const mappedIcons = {
   calendar: Calendar,
   barbell: Barbell,
   calendarDots: CalendarDots,
+  calendarPlus: CalendarPlus,
   clock: Clock,
   smiley: Smiley,
   trash: Trash,
@@ -74,6 +82,8 @@ export const mappedIcons = {
   pencil: Pencil,
   book: Book,
   sparkle: Sparkle,
+  microphone: Microphone,
+  brain: Brain,
   x: X,
 };
 

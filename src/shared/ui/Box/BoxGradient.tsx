@@ -39,6 +39,7 @@ export function BoxGradient({
         width: "100%",
         flex: boxProps.flex,
         paddingTop: style?.paddingTop,
+        paddingBottom: style?.paddingBottom,
       }}
     >
       <Box

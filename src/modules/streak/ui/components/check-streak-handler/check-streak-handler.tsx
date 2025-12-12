@@ -9,6 +9,7 @@ import { useCheckStreakHandlerController } from "./check-streak-handler.controll
 export function CheckStreakHandler({
   habitId,
   habitTitle,
+  habitIcon,
 }: CheckStreakHandlerProps) {
   const controller = useCheckStreakHandlerController({
     habitId,
@@ -48,7 +49,13 @@ export function CheckStreakHandler({
       gap="sp25"
       paddingHorizontal="sp25"
     >
-      {/*<Icon iconName="barbell" size={56} color="buttonPrimaryBackground" />*/}
+      {habitIcon && (
+        <Icon
+          iconName={habitIcon}
+          size={56}
+          color="buttonElevatedBackgroundEnd"
+        />
+      )}
       <Text text={habitTitle} preset="bold/30" />
 
       <Box alignItems="center" gap="sp15">

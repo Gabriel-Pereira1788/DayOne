@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { ActivityIndicator, TouchableOpacityProps } from "react-native";
 
 import { If } from "@/shared/helpers/components/If";
 
 import { buildVariant } from "./library";
-import { TouchableOpacityBox } from "../Box/TouchableOpacityBox";
+
 import { Text } from "../Text/Text";
 import { Icon, IconName } from "../Icon";
 import { ButtonContainer } from "./ButtonContainer";
+
+import { TouchableBounce } from "../Touchable";
 
 export type ButtonProps = {
   text: string;
@@ -26,9 +28,10 @@ export function Button({
   enableGradient = false,
   ...touchableOpacityProps
 }: ButtonProps) {
-  const _variant = buildVariant(variant);
+  const _variant = useMemo(() => buildVariant(variant), [variant]);
+
   return (
-    <TouchableOpacityBox
+    <TouchableBounce
       boxProps={{
         width: "100%",
         borderRadius: "rd15",
@@ -38,7 +41,7 @@ export function Button({
         opacity: loading || disabled ? 0.7 : 1,
         ..._variant.container,
       }}
-      activeOpacity={0.8}
+      activeOpacity={0.9}
       disabled={loading}
       {...touchableOpacityProps}
     >
@@ -60,6 +63,6 @@ export function Button({
           <Icon iconName={rightIconName!} color={_variant.textColor} />
         </If>
       </ButtonContainer>
-    </TouchableOpacityBox>
+    </TouchableBounce>
   );
 }

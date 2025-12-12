@@ -5,10 +5,9 @@ import { HabitCard } from "../../components/habit-card";
 import { useCallback } from "react";
 import { Habit } from "@/modules/habit/domain/habit.model";
 import { TouchableBounce } from "@/shared/ui/Touchable";
-
 import { DashboardStreakList } from "./components/dashboard-streak-list";
 import { DashboardEmptyView } from "./components/dashboard-empty-view";
-import { ProgressiveBlurView } from "@sbaiahmed1/react-native-blur";
+import { DashboardHeader } from "./components/dashboard-header";
 
 export function DashboardScreen() {
   const controller = useDashboardController();
@@ -30,31 +29,37 @@ export function DashboardScreen() {
 
   return (
     <Box flex={1} alignItems="center" justifyContent="center" pt="sp28">
-      <DashboardStreakList />
+      {controller.habits?.length === 0 && !controller.isLoading ? (
+        <DashboardEmptyView />
+      ) : (
+        <>
+          <DashboardHeader />
+          <DashboardStreakList />
 
-      <FlatList
-        data={controller.habits}
-        ListEmptyComponent={<DashboardEmptyView />}
-        ListHeaderComponent={
-          <Box px="sp20" gap="sp10">
-            <Text text="Habits" preset="semiBold/24" />
-            <TextInput
-              placeholder="Search"
-              LeftElement={<Icon iconName="magnifyingGlass" />}
-              onChangeText={controller.handleSearch}
-            />
-          </Box>
-        }
-        style={{
-          width: "100%",
-        }}
-        contentContainerStyle={{
-          flexGrow: 1,
-          gap: 10,
-          paddingBottom:50
-        }}
-        renderItem={renderItem}
-      />
+          <FlatList
+            data={controller.habits}
+            ListHeaderComponent={
+              <Box px="sp20" gap="sp10">
+                <Text text="Habits" preset="semiBold/24" />
+                <TextInput
+                  placeholder="Search"
+                  LeftElement={<Icon iconName="magnifyingGlass" />}
+                  onChangeText={controller.handleSearch}
+                />
+              </Box>
+            }
+            style={{
+              width: "100%",
+            }}
+            contentContainerStyle={{
+              flexGrow: 1,
+              gap: 10,
+              paddingBottom: 50,
+            }}
+            renderItem={renderItem}
+          />
+        </>
+      )}
     </Box>
   );
 }

@@ -13,6 +13,7 @@ export function StreakCard({
   const controller = useStreakCardController({
     habitId,
     habitTitle,
+    habitIcon,
   });
 
   const renderWeeklyStreak = () => (

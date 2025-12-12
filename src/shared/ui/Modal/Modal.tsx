@@ -10,6 +10,7 @@ import { ModalProps } from "./types";
 
 import { useModalController } from "./modal.controller";
 import { useModalAnimatedStyles } from "./hooks";
+import BlurView from "@sbaiahmed1/react-native-blur";
 
 const AnimatedBox = Animated.createAnimatedComponent(Box);
 
@@ -25,24 +26,23 @@ export function Modal(props: ModalProps) {
   return (
     <RNModal visible={visible} transparent onRequestClose={onClose}>
       <GestureHandlerRootView style={{ flex: 1 }}>
+        <Animated.View
+          onTouchStart={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          style={[
+            {
+              flex: 1,
+              width: dimensions.width,
+              height: dimensions.height,
+              position: "absolute",
+              zIndex: 10,
+            },
+            backdropStyle,
+          ]}
+        />
         <Box position="relative" flex={1} justifyContent="flex-end">
-          <Animated.View
-            onTouchStart={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-            style={[
-              {
-                flex: 1,
-                width: dimensions.width,
-                height: dimensions.height,
-                position: "absolute",
-                zIndex: 10,
-              },
-              backdropStyle,
-            ]}
-          />
-
           <GestureDetector gesture={panGesture}>
             <AnimatedBox
               entering={SlideInDown}
@@ -55,25 +55,34 @@ export function Modal(props: ModalProps) {
               flexGrow={1}
               maxHeight={maxHeight}
               width={"100%"}
-              backgroundColor="backgroundTertiary"
               position="absolute"
+              overflow={"hidden"}
               zIndex={100}
               borderTopLeftRadius="rd40"
               borderTopRightRadius="rd40"
               style={bottomSheetStyle}
             >
-              <Box
-                width={50}
-                height={5}
-                backgroundColor="surfaceBorder"
-                borderRadius="rd12"
-                alignSelf="center"
-                mb="sp15"
-              />
+              <BlurView
+                blurType="dark"
+                blurAmount={50}
+                ignoreSafeArea
+                style={{
+                  height: "100%",
+                }}
+              >
+                <Box
+                  width={50}
+                  height={5}
+                  backgroundColor="surfaceBorder"
+                  borderRadius="rd12"
+                  alignSelf="center"
+                  mb="sp15"
+                />
 
-              <Box py="sp20" px="sp25">
-                {config.content && config.content}
-              </Box>
+                <Box py="sp20" px="sp25">
+                  {config.content && config.content}
+                </Box>
+              </BlurView>
             </AnimatedBox>
           </GestureDetector>
         </Box>

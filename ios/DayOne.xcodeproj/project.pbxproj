@@ -339,7 +339,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DayOne/DayOne.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = HDY45LN42J;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -458,12 +458,13 @@
 					"$(PODS_ROOT)/NitroModules",
 				);
 				INFOPLIST_FILE = DayOne/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DayOne - Habit Tracker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				OTHER_CFLAGS = (
 					"$(inherited)",
 					"-fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.modulemap\"",
@@ -499,13 +500,13 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bytebuilder123.DayOne;
-				PRODUCT_NAME = DayOne;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bytebuilder123.DayOneHabitTracker";
+				PRODUCT_NAME = "DayOneHabitTracker";
 				SWIFT_OBJC_BRIDGING_HEADER = "DayOne/DayOne-Bridging-Header.h";
 				SWIFT_OBJC_INTEROP_MODE = objc;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -517,27 +518,28 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DayOne/DayOne.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = HDY45LN42J;
 				INFOPLIST_FILE = DayOne/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "DayOne - Habit Tracker";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bytebuilder123.DayOne;
-				PRODUCT_NAME = DayOne;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bytebuilder123.DayOneHabitTracker";
+				PRODUCT_NAME = "DayOneHabitTracker";
 				SWIFT_OBJC_BRIDGING_HEADER = "DayOne/DayOne-Bridging-Header.h";
 				SWIFT_OBJC_INTEROP_MODE = objc;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

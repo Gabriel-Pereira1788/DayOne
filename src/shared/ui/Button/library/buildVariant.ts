@@ -37,9 +37,8 @@ export function buildVariant(variant: ButtonProps["variant"]): {
     default:
       return {
         container: {
-          borderRadius: "rd30",
           borderColor: "surfaceBorder",
-          borderWidth: 2,
+          borderWidth: 1,
           height: 54,
           width: "100%",
         },
