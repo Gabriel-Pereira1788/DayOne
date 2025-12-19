@@ -1,11 +1,16 @@
 import {
-  QWEN3_0_6B,
-  QWEN3_TOKENIZER,
-  QWEN3_TOKENIZER_CONFIG,
+  HAMMER2_1_1_5B,
+  HAMMER2_1_TOKENIZER,
+  HAMMER2_1_TOKENIZER_CONFIG,
   LLMModule,
   MessageRole,
 } from "react-native-executorch";
-import { InitializeProps, LLMServiceImpl, Message } from "../../types";
+import {
+  Configure,
+  InitializeProps,
+  LLMServiceImpl,
+  Message,
+} from "../../types";
 
 let initialized = false;
 
@@ -15,10 +20,11 @@ async function initialize({
 }: InitializeProps) {
   try {
     await LLMModule.load({
-      modelSource: QWEN3_0_6B,
-      tokenizerSource: QWEN3_TOKENIZER,
+      modelSource: HAMMER2_1_1_5B,
+      tokenizerSource: HAMMER2_1_TOKENIZER,
       tokenCallback,
-      tokenizerConfigSource: QWEN3_TOKENIZER_CONFIG,
+
+      tokenizerConfigSource: HAMMER2_1_TOKENIZER_CONFIG,
       onDownloadProgressCallback: onDownloadProgress,
     });
     initialized = true;
@@ -26,6 +32,19 @@ async function initialize({
     initialized = false;
     throw error;
   }
+}
+
+function configure({ systemPrompt, tools, executeToolCallback }: Configure) {
+  LLMModule.configure({
+    chatConfig: {
+      systemPrompt: systemPrompt,
+    },
+    toolsConfig: {
+      tools,
+      executeToolCallback,
+      displayToolCalls:true,
+    },
+  });
 }
 
 async function generate(messages: Message[]) {
@@ -45,16 +64,33 @@ async function generate(messages: Message[]) {
 }
 
 function isInitialized(): boolean {
+  LLMModule.deleteMessage;
   return initialized;
 }
 
 function deleteModel() {
-  LLMModule.delete();
+  try {
+    LLMModule.delete();
+  } catch (err) {
+    console.log("ERROR-ON-DELETEMODEL", err);
+    LLMModule.interrupt();
+  }
+}
+
+async function deleteMessage(id: number) {
+  try {
+    await LLMModule.deleteMessage(id);
+  } catch (err) {
+    console.log("ERROR-ON-DELETEMESSAGE", err);
+    LLMModule.interrupt();
+  }
 }
 
 export const execuTorchImpl: LLMServiceImpl = {
   initialize,
   generate,
   isInitialized,
+  deleteMessage,
   deleteModel,
+  configure,
 };

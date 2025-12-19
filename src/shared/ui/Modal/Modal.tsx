@@ -11,12 +11,14 @@ import { ModalProps } from "./types";
 import { useModalController } from "./modal.controller";
 import { useModalAnimatedStyles } from "./hooks";
 import BlurView from "@sbaiahmed1/react-native-blur";
+import { useEffect, useState } from "react";
 
 const AnimatedBox = Animated.createAnimatedComponent(Box);
 
 export function Modal(props: ModalProps) {
   const { config, visible, onClose } = props;
-  const { contentHeight, panGesture, translateY, maxHeight } =
+
+  const { contentHeight, panGesture,bottom, translateY, maxHeight, keyboardHeight } =
     useModalController(props);
 
   const { backdropStyle, bottomSheetStyle } = useModalAnimatedStyles({
@@ -79,9 +81,15 @@ export function Modal(props: ModalProps) {
                   mb="sp15"
                 />
 
-                <Box py="sp20" px="sp25">
+                <AnimatedBox
+                  py="sp20"
+                  px="sp25"
+                  style={{
+                    paddingBottom: keyboardHeight + bottom,
+                  }}
+                >
                   {config.content && config.content}
-                </Box>
+                </AnimatedBox>
               </BlurView>
             </AnimatedBox>
           </GestureDetector>

@@ -1,16 +1,18 @@
 import { createNewHabitService } from "../create-new-habit.service";
-import { repositoryService } from "@/shared/services/repository";
+
 import { Collection } from "@/infra/repository";
 import { HabitDTO, Habit } from "../../../habit.model";
 import { FrequencyValidationError } from "../../../error";
+import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 
 describe("CreateNewHabitService", () => {
   let habitRepository: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    habitRepository = repositoryService.collection<Habit>(Collection.HABITS);
-    // Clear any existing data
+    habitRepository = inAppRepositoryBuilder.collection<Habit>(
+      Collection.HABITS,
+    );
     habitRepository.setMock([]);
   });
 
@@ -28,7 +30,7 @@ describe("CreateNewHabitService", () => {
       const startDate = new Date("2024-01-01T10:00:00.000Z");
       jest.useFakeTimers().setSystemTime(startDate);
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       expect(habits).toHaveLength(1);
@@ -53,7 +55,7 @@ describe("CreateNewHabitService", () => {
       const startDate = new Date("2024-02-15T08:30:00.000Z");
       jest.useFakeTimers().setSystemTime(startDate);
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -77,7 +79,7 @@ describe("CreateNewHabitService", () => {
       const startDate = new Date("2024-01-01T06:00:00.000Z");
       jest.useFakeTimers().setSystemTime(startDate);
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -101,7 +103,7 @@ describe("CreateNewHabitService", () => {
       const startDate = new Date("2023-01-01T06:00:00.000Z");
       jest.useFakeTimers().setSystemTime(startDate);
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -125,7 +127,7 @@ describe("CreateNewHabitService", () => {
       const startDate = new Date("2024-01-01T06:00:00.000Z");
       jest.useFakeTimers().setSystemTime(startDate);
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -149,7 +151,7 @@ describe("CreateNewHabitService", () => {
       const startDate = new Date("2024-03-10T19:00:00.000Z");
       jest.useFakeTimers().setSystemTime(startDate);
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -172,7 +174,7 @@ describe("CreateNewHabitService", () => {
       const startDate = new Date("2024-06-01T14:00:00.000Z");
       jest.useFakeTimers().setSystemTime(startDate);
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -192,7 +194,7 @@ describe("CreateNewHabitService", () => {
         minutes: 0,
       };
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -214,7 +216,7 @@ describe("CreateNewHabitService", () => {
       const startDate = new Date("2024-01-28T12:00:00.000Z");
       jest.useFakeTimers().setSystemTime(startDate);
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -236,7 +238,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "dayOfWeek is required when frequency is weekly",
           ),
@@ -253,7 +257,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "dayOfMonth is required when frequency is monthly",
           ),
@@ -271,7 +277,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "dayOfWeek must be between 0 (Sunday) and 6 (Saturday)",
           ),
@@ -289,7 +297,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "dayOfWeek must be between 0 (Sunday) and 6 (Saturday)",
           ),
@@ -307,7 +317,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError("dayOfMonth must be between 1 and 31"),
         );
       });
@@ -323,7 +335,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError("dayOfMonth must be between 1 and 31"),
         );
       });
@@ -342,7 +356,7 @@ describe("CreateNewHabitService", () => {
         const startDate = new Date("2024-01-01T10:00:00.000Z");
         jest.useFakeTimers().setSystemTime(startDate);
 
-        await createNewHabitService(habitDTO);
+        await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
         const habits = await habitRepository.get();
         expect(habits).toHaveLength(1);
@@ -368,7 +382,7 @@ describe("CreateNewHabitService", () => {
         const startDate = new Date("2024-01-01T10:00:00.000Z");
         jest.useFakeTimers().setSystemTime(startDate);
 
-        await createNewHabitService(habitDTO);
+        await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
         const habits = await habitRepository.get();
         expect(habits).toHaveLength(1);
@@ -390,7 +404,7 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await createNewHabitService(habitDTO);
+        await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
         const habits = await habitRepository.get();
         expect(habits).toHaveLength(1);
@@ -410,7 +424,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "hours is required and must be between 0 and 23",
           ),
@@ -426,7 +442,9 @@ describe("CreateNewHabitService", () => {
           hours: 10,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "minutes is required and must be between 0 and 59",
           ),
@@ -443,7 +461,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "hours is required and must be between 0 and 23",
           ),
@@ -460,7 +480,9 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "hours is required and must be between 0 and 23",
           ),
@@ -477,7 +499,9 @@ describe("CreateNewHabitService", () => {
           minutes: -1,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "minutes is required and must be between 0 and 59",
           ),
@@ -494,7 +518,9 @@ describe("CreateNewHabitService", () => {
           minutes: 60,
         };
 
-        await expect(createNewHabitService(habitDTO)).rejects.toThrow(
+        await expect(
+          createNewHabitService(habitDTO, inAppRepositoryBuilder),
+        ).rejects.toThrow(
           new FrequencyValidationError(
             "minutes is required and must be between 0 and 59",
           ),
@@ -511,7 +537,7 @@ describe("CreateNewHabitService", () => {
           minutes: 59,
         };
 
-        await createNewHabitService(habitDTO);
+        await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
         const habits = await habitRepository.get();
         expect(habits).toHaveLength(1);
@@ -531,7 +557,7 @@ describe("CreateNewHabitService", () => {
           minutes: 0,
         };
 
-        await createNewHabitService(habitDTO);
+        await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
         const habits = await habitRepository.get();
         expect(habits).toHaveLength(1);
@@ -552,7 +578,7 @@ describe("CreateNewHabitService", () => {
         minutes: 0,
       };
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       const createdHabit = habits[0];
@@ -577,7 +603,7 @@ describe("CreateNewHabitService", () => {
         minutes: 0,
       };
 
-      await createNewHabitService(habitDTO);
+      await createNewHabitService(habitDTO, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       expect(habits).toHaveLength(1);
@@ -602,8 +628,8 @@ describe("CreateNewHabitService", () => {
         minutes: 30,
       };
 
-      await createNewHabitService(habitDTO1);
-      await createNewHabitService(habitDTO2);
+      await createNewHabitService(habitDTO1, inAppRepositoryBuilder);
+      await createNewHabitService(habitDTO2, inAppRepositoryBuilder);
 
       const habits = await habitRepository.get();
       expect(habits).toHaveLength(2);

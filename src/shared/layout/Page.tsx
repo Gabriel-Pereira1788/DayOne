@@ -26,7 +26,6 @@ export function Page({
   disablePadding,
 }: React.PropsWithChildren<PageProps>) {
   const { top, bottom } = useAppSafeArea();
-  console.log("BOTTOM:", bottom)
 
   if (gradientEnabled && !backgroundColor) {
     return (

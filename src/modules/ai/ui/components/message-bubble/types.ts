@@ -5,5 +5,7 @@ export interface MessageBubbleProps {
   animated?: boolean;
   animatedPrefix?: string;
   animatingText?: string;
+  transparent?: boolean;
+  showTimestamp?: boolean;
   onAnimationComplete?: () => void;
 }

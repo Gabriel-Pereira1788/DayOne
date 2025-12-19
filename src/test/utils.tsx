@@ -16,6 +16,12 @@ import Dashboard from "../../app/(app)/dashboard";
 import NewHabit from "../../app/(app)/new-habit";
 import EditHabit from "../../app/(app)/edit-habit";
 import HabitDetails from "../../app/(app)/habit-details/[id]";
+import AiChat from "../../app/(app)/ai-chat";
+import type { LLMServiceImpl } from "@/infra/adapters/llm/types";
+import { DIProvider } from "@/infra/DI/context";
+import { DIKeys } from "@/infra/DI/types";
+import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
+import { inAppScheduleNotification } from "@/infra/adapters/schedule-notification/implementation/inApp/in-app-schedule-notification";
 
 const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -33,7 +39,22 @@ export function Wrapper({ children }: React.PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClientMock}>
       <ThemeProvider theme={theme}>
-        <KeyboardProvider>{children}</KeyboardProvider>
+        <DIProvider
+          config={(container) => {
+            container.registerService(DIKeys.LLMService, {} as LLMServiceImpl);
+            container.registerService(DIKeys.Storage, inAppStorage);
+            container.registerService(
+              DIKeys.ScheduleNotification,
+              inAppScheduleNotification,
+            );
+            container.registerService(
+              DIKeys.Repository,
+              inAppRepositoryBuilder,
+            );
+          }}
+        >
+          <KeyboardProvider>{children}</KeyboardProvider>
+        </DIProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
@@ -73,10 +94,12 @@ export function renderApp({
   renderRouter(
     {
       _layout: () => <RootStack />,
+
       "(app)/dashboard": () => <Dashboard />,
       "(app)/new-habit": () => <NewHabit />,
       "(app)/edit-habit/index": () => <EditHabit />,
       "(app)/habit-details/[id]/index": () => <HabitDetails />,
+      "(app)/ai-chat/index": () => <AiChat />,
     },
     {
       wrapper: Wrapper,

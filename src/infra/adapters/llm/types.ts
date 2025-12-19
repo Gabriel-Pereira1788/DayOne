@@ -1,4 +1,5 @@
 import { Habit } from "@/modules/habit/domain/habit.model";
+import { ToolCall } from "react-native-executorch";
 
 export type MessageRole = "user" | "assistant" | "system" | "typing";
 export type Message = {
@@ -23,4 +24,17 @@ export interface LLMServiceImpl {
   generate(messages: Message[]): Promise<LLMResponse>;
   isInitialized(): boolean;
   deleteModel(): void;
+  deleteMessage(id: number): Promise<void>;
+  configure(config: Configure): void;
+}
+
+export interface Tool {
+  toolName: string;
+  arguments: Object;
+}
+
+export interface Configure {
+  systemPrompt: string;
+  tools: Object[];
+  executeToolCallback: (call: Tool) => Promise<string | null>;
 }

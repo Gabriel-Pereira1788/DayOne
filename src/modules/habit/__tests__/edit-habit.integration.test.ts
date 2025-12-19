@@ -1,15 +1,15 @@
-import { repositoryService } from "@/shared/services/repository";
 import { renderApp, waitFor, screen, fireEvent } from "@/test/utils";
 import { habitListMock } from "../__mocks__/habit-list.mock";
 import { Collection } from "@/infra/repository";
+import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 
 beforeEach(() => {
-  const habitRepository = repositoryService.collection(Collection.HABITS);
+  const habitRepository = inAppRepositoryBuilder.collection(Collection.HABITS);
   habitRepository.setMock?.(habitListMock);
 });
 
 afterEach(() => {
-  const habitRepository = repositoryService.collection(Collection.HABITS);
+  const habitRepository = inAppRepositoryBuilder.collection(Collection.HABITS);
   habitRepository.setMock?.([]);
 });
 

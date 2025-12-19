@@ -2,7 +2,10 @@ import { Message } from "@/infra/adapters/llm/types";
 import { removeThinkContent } from "../../utils/removeThinkContent";
 import { AIScreenActionType, AIScreenState } from "./types";
 
-export function reducer(state: AIScreenState, action: AIScreenActionType) {
+export function reducer(
+  state: AIScreenState,
+  action: AIScreenActionType,
+): AIScreenState {
   switch (action.type) {
     case "ADD_USER_MESSAGE":
       const newUserMessage = {
@@ -11,6 +14,7 @@ export function reducer(state: AIScreenState, action: AIScreenActionType) {
       };
       return {
         ...state,
+        currentToken:"",
         messages: [...state.messages, newUserMessage],
       };
     case "ADD_AI_MESSAGE":
@@ -36,6 +40,13 @@ export function reducer(state: AIScreenState, action: AIScreenActionType) {
         ...state,
         currentToken: action.payload,
         streamingMessage: state.streamingMessage + action.payload,
+      };
+
+    case "SET_CURRENT_AI_MESSAGE":
+      return {
+        ...state,
+        currentToken:"",
+        currentAIMessage: action.payload,
       };
     default:
       return state;

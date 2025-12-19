@@ -3,6 +3,7 @@ import { Message } from "@/infra/adapters/llm/types";
 export interface AIScreenState {
   messages: Message[];
   currentToken: string;
+  currentAIMessage: Message | null;
   streamingMessage: string;
   showBackToEnd: boolean;
 }
@@ -28,4 +29,8 @@ export type AIScreenActionType =
   | {
       type: "SET_CURRENT_TOKEN";
       payload: string;
+    }
+  | {
+      type: "SET_CURRENT_AI_MESSAGE";
+      payload: Message | null;
     };

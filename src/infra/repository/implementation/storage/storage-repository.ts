@@ -1,20 +1,25 @@
-import { storage } from "@/shared/services/storage";
 import {
   Collection,
   FindOptions,
   IBaseRepository,
   IBaseRepositoryBuilder,
 } from "../../types";
+import { DIContainerRef } from "@/infra/DI/hook/useDIContainer";
+import { DIKeys } from "@/infra/DI/types";
 
 class StorageRepository<Data = unknown> implements IBaseRepository<Data> {
   constructor(private readonly collection: Collection) {}
-
+  private getStorageService() {
+    return DIContainerRef.current!.getService(DIKeys.Storage);
+  }
   public async get() {
+    const storage = this.getStorageService();
     const data = await storage.getItem<Data[]>(this.collection);
     return data || [];
   }
 
   public async findById(id: string): Promise<Data> {
+    const storage = this.getStorageService();
     const data = await storage.getItem<(Data & { id: string })[]>(
       this.collection,
     );
@@ -24,6 +29,7 @@ class StorageRepository<Data = unknown> implements IBaseRepository<Data> {
   }
 
   public async create<DTO>(data: DTO) {
+    const storage = this.getStorageService();
     const dataList = await storage.getItem<Data[]>(this.collection);
 
     if (!dataList) {
@@ -36,6 +42,7 @@ class StorageRepository<Data = unknown> implements IBaseRepository<Data> {
   }
 
   public async update<T>(id: string, data: Partial<T>) {
+    const storage = this.getStorageService();
     const item = await this.findById(id);
     if (!item) throw new Error("Item not found");
 
@@ -50,6 +57,7 @@ class StorageRepository<Data = unknown> implements IBaseRepository<Data> {
   }
 
   public async delete(id: string) {
+    const storage = this.getStorageService();
     const item = await this.findById(id);
     if (!item) throw new Error("Item has been deleted");
     const dataList =
@@ -63,6 +71,7 @@ class StorageRepository<Data = unknown> implements IBaseRepository<Data> {
     filter: Partial<Data>,
     options?: FindOptions,
   ): Promise<Data[]> {
+    const storage = this.getStorageService();
     const data = await storage.getItem<Data[]>(this.collection);
 
     if (!data || data.length === 0) {

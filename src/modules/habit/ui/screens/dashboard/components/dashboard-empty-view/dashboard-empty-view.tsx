@@ -5,6 +5,7 @@ import Animated, {
   FadeInLeft,
   FadeInUp,
 } from "react-native-reanimated";
+import { NitroOrb } from "react-native-nitro-orb";
 
 export function DashboardEmptyView() {
   return (
@@ -16,6 +17,7 @@ export function DashboardEmptyView() {
       gap="sp20"
       px="sp20"
     >
+
       <Box gap="sp10">
         <Animated.View
           entering={FadeInUp}
@@ -23,6 +25,7 @@ export function DashboardEmptyView() {
             gap: 10,
           }}
         >
+
           <Icon iconName="calendarPlus" color="textSecondary" size={90} />
           <Text text="No habits here… yet." preset="bold/30" />
         </Animated.View>

@@ -1,15 +1,17 @@
 import { Collection } from "@/infra/repository";
 import { habitListMock } from "@/modules/habit/__mocks__/habit-list.mock";
-import { repositoryService } from "@/shared/services/repository";
 import { getHabitsByText } from "../get-habits-by-text.service";
 import { Habit } from "../../../habit.model";
+import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 
 describe("GetHabitsByTextService", () => {
   let habitRepository: any;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    habitRepository = repositoryService.collection<Habit>(Collection.HABITS);
+    habitRepository = inAppRepositoryBuilder.collection<Habit>(
+      Collection.HABITS,
+    );
     habitRepository.setMock?.(habitListMock);
   });
 
@@ -19,7 +21,7 @@ describe("GetHabitsByTextService", () => {
 
   describe("Search habits by text", () => {
     it("should find habits by exact title match", async () => {
-      const result = await getHabitsByText("Meditar");
+      const result = await getHabitsByText("Meditar", inAppRepositoryBuilder);
 
       expect(result).toHaveLength(1);
       expect(result[0].title).toBe("Meditar");
@@ -27,7 +29,7 @@ describe("GetHabitsByTextService", () => {
     });
 
     it("should find habits by partial title match", async () => {
-      const result = await getHabitsByText("Estudar");
+      const result = await getHabitsByText("Estudar", inAppRepositoryBuilder);
 
       expect(result).toHaveLength(1);
       expect(result[0].title).toBe("Estudar programação");
@@ -45,6 +47,9 @@ describe("GetHabitsByTextService", () => {
           description: "Exercícios matinais",
           targetDurationInDays: 30,
           startDate: "2024-03-01",
+          frequency: "daily",
+          hours: 10,
+          minutes: 10,
           completed: false,
         },
         {
@@ -53,13 +58,16 @@ describe("GetHabitsByTextService", () => {
           description: "Exercícios noturnos",
           targetDurationInDays: 30,
           startDate: "2024-03-01",
+          frequency: "daily",
+          hours: 10,
+          minutes: 10,
           completed: false,
         },
       ];
 
       habitRepository.setMock?.([...habitListMock, ...duplicatedHabits]);
 
-      const result = await getHabitsByText("Exercitar");
+      const result = await getHabitsByText("Exercitar", inAppRepositoryBuilder);
 
       expect(result.length).toBeGreaterThanOrEqual(2);
       expect(result.every((habit) => habit.title.includes("Exercitar"))).toBe(
@@ -68,14 +76,17 @@ describe("GetHabitsByTextService", () => {
     });
 
     it("should return empty array when no habits match", async () => {
-      const result = await getHabitsByText("Inexistente");
+      const result = await getHabitsByText(
+        "Inexistente",
+        inAppRepositoryBuilder,
+      );
 
       expect(result).toEqual([]);
       expect(result).toHaveLength(0);
     });
 
     it("should handle empty search text", async () => {
-      const result = await getHabitsByText("");
+      const result = await getHabitsByText("", inAppRepositoryBuilder);
 
       // Dependendo da implementação do findBy, pode retornar todos ou vazio
       expect(Array.isArray(result)).toBe(true);
@@ -88,32 +99,35 @@ describe("GetHabitsByTextService", () => {
         description: "Livros de tecnologia",
         targetDurationInDays: 30,
         startDate: "2024-03-01",
+        frequency: "daily",
+        hours: 10,
+        minutes: 10,
         completed: false,
       };
 
       habitRepository.setMock?.([specialCharHabit]);
 
-      const result = await getHabitsByText("@livros");
+      const result = await getHabitsByText("@livros", inAppRepositoryBuilder);
 
       expect(result).toHaveLength(1);
       expect(result[0].title).toContain("@livros");
     });
 
     it("should handle case sensitivity", async () => {
-      const result = await getHabitsByText("meditar");
+      const result = await getHabitsByText("meditar", inAppRepositoryBuilder);
 
       // Verifica se encontra independente do case
       expect(result.length).toBeGreaterThanOrEqual(0);
     });
 
     it("should be return all habits if without text", async () => {
-      const result = await getHabitsByText("");
+      const result = await getHabitsByText("", inAppRepositoryBuilder);
 
       expect(result.length).toEqual(habitListMock.length);
     });
 
     it("should return complete habit objects with all properties", async () => {
-      const result = await getHabitsByText("Ler");
+      const result = await getHabitsByText("Ler", inAppRepositoryBuilder);
 
       expect(result).toHaveLength(1);
       expect(result[0]).toHaveProperty("id");

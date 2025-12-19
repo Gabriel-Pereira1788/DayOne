@@ -3,8 +3,15 @@ import { router } from "expo-router";
 
 import { DashboardHeaderProps } from "./types";
 import { IconPress } from "@/shared/ui/Icon";
+import { modalService } from "@/shared/services/modal";
+import { AIActionHandler } from "@/modules/ai/ui/components/ai-action-handler";
 
 export function DashboardHeader({}: DashboardHeaderProps) {
+  function renderAIActionHandler() {
+    modalService.open({
+      content: <AIActionHandler />,
+    });
+  }
   return (
     <Box width={"100%"} gap="sp10" mb="sp10">
       <Box
@@ -31,9 +38,7 @@ export function DashboardHeader({}: DashboardHeaderProps) {
           iconName="sparkle"
           size={35}
           weight="bold"
-          onPress={() => {
-            router.navigate("/(app)/ai-chat");
-          }}
+          onPress={renderAIActionHandler}
         />
       </Box>
     </Box>

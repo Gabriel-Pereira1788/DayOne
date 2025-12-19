@@ -1,8 +1,9 @@
+import Animated, { FadeInDown } from "react-native-reanimated";
 import { useAIScreenContext } from "../../context";
 import { AIChatTypingIndicator } from "../ai-chat-typing-indicator";
-import { MessageBubble } from "../message-bubble";
 import { Message } from "@/infra/adapters/llm/types";
 import { useEffect, useMemo } from "react";
+import { AnimatedMessageText } from "../message-bubble/components";
 
 export function AIChatMessageTokenized() {
   const streamingMessage = useAIScreenContext(
@@ -41,14 +42,12 @@ export function AIChatMessageTokenized() {
     return match[1];
   }, [streamingMessage]);
 
-  useEffect(() => {
-    if (visibleContent.trim()) {
-      console.log("Temporary message content:", temporaryMessage.content);
-    }
-  }, [visibleContent]);
-
   if (!visibleContent.trim()) {
-    return <AIChatTypingIndicator />;
+    return (
+      <Animated.View entering={FadeInDown}>
+        <AIChatTypingIndicator />
+      </Animated.View>
+    );
   }
 
   const temporaryMessage: Message = {
@@ -57,5 +56,15 @@ export function AIChatMessageTokenized() {
     content: visibleContent,
   };
 
-  return <MessageBubble message={temporaryMessage} animated />;
+  return (
+    <Animated.View entering={FadeInDown}>
+      <AnimatedMessageText
+        text={temporaryMessage.content}
+        preset="regular/14"
+        color="textSecondary"
+        showCursor
+        enabled
+      />
+    </Animated.View>
+  );
 }

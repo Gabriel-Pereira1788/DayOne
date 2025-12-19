@@ -1,8 +1,11 @@
-import { Collection } from "@/infra/repository";
-import { repositoryService } from "@/shared/services/repository";
+import { Collection, IBaseRepositoryBuilder } from "@/infra/repository";
+
 import { Streak } from "../../streak.model";
 
-export async function createStreakService(habitId: string) {
+export async function createStreakService(
+  habitId: string,
+  repositoryService: IBaseRepositoryBuilder,
+) {
   const streakerRepository = repositoryService.collection<Streak>(
     Collection.STREAKS,
   );

@@ -1,8 +1,10 @@
-import { repositoryService } from "@/shared/services/repository";
 import { Habit, HabitId } from "../../habit.model";
-import { Collection } from "@/infra/repository";
+import { Collection, IBaseRepositoryBuilder } from "@/infra/repository";
 
-export async function getHabitDetailsService(id: HabitId) {
+export async function getHabitDetailsService(
+  id: HabitId,
+  repositoryService: IBaseRepositoryBuilder,
+) {
   const habitsRepository = repositoryService.collection<Habit>(
     Collection.HABITS,
   );

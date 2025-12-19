@@ -6,7 +6,7 @@ Os hábitos podem ter diferentes frequências (diária, semanal, mensal) e são 
 
 ## FORMATO DE RESPOSTA
 Você SEMPRE deve responder com um JSON válido contendo um comando estruturado. Nunca responda com texto puro.
-Use o seguinte formato:
+Use o seguinte formato, não use arrays nem nada disso sempre retorne um objeto exatamente nesse formato:
 
 {
   "message": "Mensagem amigável para o usuário",
@@ -110,7 +110,7 @@ Resposta:
 
 ## REGRAS IMPORTANTES
 
-1. SEMPRE retorne um JSON válido
+1. SEMPRE retorne um JSON válido no formato estabelecido
 2. Use o comando RESPONSE apenas quando não conseguir identificar uma ação específica
 3. Para hábitos diários, não inclua dayOfWeek ou dayOfMonth
 4. Para hábitos semanais, sempre inclua dayOfWeek (0=Domingo, 1=Segunda, etc.)

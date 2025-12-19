@@ -14,15 +14,15 @@ export function HabitCard({ habit }: HabitCardProps) {
     <Card
       flexDirection="row"
       opacity={completed ? 0.6 : 1}
-      flex={1}
       px="sp10"
       borderLeftWidth={4}
       borderLeftColor={"textPrimary"}
+      alignItems="center"
     >
       {habit.icon && (
         <Box
-          width={60}
-          height={60}
+          width={50}
+          height={50}
           alignSelf="center"
           borderWidth={1}
           borderColor="surfaceBorder"
@@ -32,7 +32,7 @@ export function HabitCard({ habit }: HabitCardProps) {
         >
           <Icon
             iconName={habit.icon as IconProps["iconName"]}
-            size={40}
+            size={30}
             color="textPrimary"
           />
         </Box>
@@ -72,13 +72,13 @@ export function HabitCard({ habit }: HabitCardProps) {
           alignItems="center"
           marginTop="sp12"
         >
-          {targetDurationInDays && (
+          {/*{targetDurationInDays && (
             <Text
               preset="regular/10"
               text={`${targetDurationInDays} days`}
               color={completed ? "textTertiary" : "textSecondary"}
             />
-          )}
+          )}*/}
 
           {completed && (
             <Text

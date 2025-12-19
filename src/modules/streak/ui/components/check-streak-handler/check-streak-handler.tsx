@@ -49,6 +49,7 @@ export function CheckStreakHandler({
       gap="sp25"
       paddingHorizontal="sp25"
     >
+
       {habitIcon && (
         <Icon
           iconName={habitIcon}

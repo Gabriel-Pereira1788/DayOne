@@ -12,8 +12,8 @@ export function AIChatTypingIndicator() {
     >
       <Box
         maxWidth="75%"
-        backgroundColor="backgroundSecondary"
-        borderRadius="rd15"
+        // backgroundColor="backgroundSecondary"
+        // borderRadius="rd15"
         borderTopLeftRadius="rd4"
         padding="sp12"
         paddingHorizontal="sp15"

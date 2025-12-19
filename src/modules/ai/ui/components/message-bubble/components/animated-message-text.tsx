@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { Text } from '@/shared/ui';
+import React, { useEffect, useState } from "react";
+import { Text } from "@/shared/ui";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
   Easing,
   useAnimatedReaction,
-} from 'react-native-reanimated';
-import {scheduleOnRN} from 'react-native-worklets'
-import { TextProps } from '@/shared/ui/Text/textTypes';
+} from "react-native-reanimated";
+import { scheduleOnRN } from "react-native-worklets";
+import { TextProps } from "@/shared/ui/Text/textTypes";
 
-interface AnimatedMessageTextProps extends Omit<TextProps, 'text'> {
+interface AnimatedMessageTextProps extends Omit<TextProps, "text"> {
   text: string;
-  speed?: number; // ms per character
+  speed?: number;
   enabled?: boolean;
   onComplete?: () => void;
   showCursor?: boolean;
@@ -28,12 +28,11 @@ export function AnimatedMessageText({
   showCursor = false,
   ...textProps
 }: AnimatedMessageTextProps) {
-  const [displayedText, setDisplayedText] = useState('');
+  const [displayedText, setDisplayedText] = useState("");
 
   const progress = useSharedValue(0);
   const cursorOpacity = useSharedValue(1);
 
-  // Update displayed text based on animation progress
   const updateText = (currentProgress: number) => {
     const charCount = Math.floor(currentProgress * text.length);
     const newText = text.slice(0, charCount);
@@ -47,8 +46,8 @@ export function AnimatedMessageText({
   useAnimatedReaction(
     () => progress.value,
     (currentProgress) => {
-      scheduleOnRN(updateText,currentProgress);
-    }
+      scheduleOnRN(updateText, currentProgress);
+    },
   );
 
   useEffect(() => {
@@ -58,21 +57,17 @@ export function AnimatedMessageText({
       return;
     }
 
-    // Reset animation when text changes
-    setDisplayedText('');
+    setDisplayedText("");
 
     progress.value = 0;
 
-    // Calculate total animation duration
     const duration = Math.min(text.length * speed, 10000); // Cap at 10 seconds
 
-    // Start the animation
     progress.value = withTiming(1, {
       duration,
       easing: Easing.linear,
     });
 
-    // Animate cursor blinking if enabled
     if (showCursor) {
       cursorOpacity.value = withTiming(
         0,
@@ -81,21 +76,15 @@ export function AnimatedMessageText({
           easing: Easing.inOut(Easing.ease),
         },
         () => {
-          'worklet';
+          "worklet";
           cursorOpacity.value = withTiming(1, {
             duration: 500,
             easing: Easing.inOut(Easing.ease),
           });
-        }
+        },
       );
     }
   }, [text, speed, enabled]);
-
-  const cursorAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: showCursor ? cursorOpacity.value : 0,
-    };
-  });
 
   const textAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -108,14 +97,7 @@ export function AnimatedMessageText({
 
   return (
     <Animated.View style={textAnimatedStyle}>
-      <Text {...textProps}>
-        {displayedText}
-        {/*{showCursor && (
-          <Animated.Text style={[{ fontSize: textProps.preset ? undefined : 14 }, cursorAnimatedStyle]}>
-            |
-          </Animated.Text>
-        )}*/}
-      </Text>
+      <Text {...textProps}>{displayedText}</Text>
     </Animated.View>
   );
 }

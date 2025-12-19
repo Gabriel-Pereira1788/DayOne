@@ -3,13 +3,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Habit, HabitDTO } from "../../habit.model";
 import { createNewHabitService } from "./create-new-habit.service";
 import { HabitQueryKeys } from "@/modules/habit/types";
-import { scheduleNotification } from "@/shared/services/schedule-notification";
+import { useRepository } from "@/infra/repository/hooks/useRepository";
+import { useScheduleNotification } from "@/infra/adapters/schedule-notification/hooks/useScheduleNotification";
 
 export function useCreateNewHabit(config: MutationProps<Habit>) {
   const queryClient = useQueryClient();
+  const repositoryService = useRepository();
+  const scheduleNotification = useScheduleNotification();
 
   const { mutate, isPending } = useMutation<Habit, Error, HabitDTO>({
-    mutationFn: (variables) => createNewHabitService(variables),
+    mutationFn: (variables) =>
+      createNewHabitService(variables, repositoryService),
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: [HabitQueryKeys.GET_HABITS],

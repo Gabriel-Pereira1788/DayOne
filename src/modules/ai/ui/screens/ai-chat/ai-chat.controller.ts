@@ -14,6 +14,7 @@ export function useAIChatController() {
 
   const { isGenerating, generate, isReady, error } = useLLMMessages({
     context: [],
+    tools: [],
     systemPrompt: AI_PROMPT,
     onTokenCallback: (token) => {
       aiChatDispatch({
@@ -23,7 +24,6 @@ export function useAIChatController() {
     },
     onDownloadProgress: (progress) => {
       setDownloadProgress(progress);
-      console.log("Download progress:", progress);
     },
   });
 

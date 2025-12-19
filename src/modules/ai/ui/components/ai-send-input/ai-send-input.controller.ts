@@ -8,17 +8,17 @@ import { useMessageListActions } from "../../hooks/useMessageListRef";
 interface Props extends AISendInputProps {}
 
 export function useAISendInputController({ onSend }: Props) {
-  const showBackToEnd = useAIScreenContext((ctx) => ctx.state.showBackToEnd);
+  // const showBackToEnd = useAIScreenContext((ctx) => ctx.state.showBackToEnd);
   const { scrollToEnd } = useMessageListActions();
 
   const inputRef = useRef<TextInput>(null);
   const value = useRef("");
 
   function handleSend() {
-    if (showBackToEnd) {
-      scrollToEnd();
-      return;
-    }
+    // if (showBackToEnd) {
+    //   scrollToEnd();
+    //   return;
+    // }
 
     if (value.current.trim() === "") {
       return;
@@ -31,7 +31,6 @@ export function useAISendInputController({ onSend }: Props) {
   }
 
   function onInputPress() {
-    console.log("onInputPress");
     inputRef.current?.focus();
     scrollToEnd();
   }
@@ -43,7 +42,7 @@ export function useAISendInputController({ onSend }: Props) {
   return {
     handleSend,
     onInputPress,
-    showBackToEnd,
+    showBackToEnd:false,
     inputRef,
     onChangeText,
   };

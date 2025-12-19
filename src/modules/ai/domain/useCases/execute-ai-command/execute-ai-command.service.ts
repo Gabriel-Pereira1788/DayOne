@@ -6,14 +6,19 @@ import { getHabitsByText } from "@/modules/habit/domain/useCases/get-habits-by-t
 import { getHabitDetailsService } from "@/modules/habit/domain/useCases/get-habit-details/get-habit-details.service";
 import { editHabitService } from "@/modules/habit/domain/useCases/edit-habit/edit-habit.service";
 import { deleteHabitService } from "@/modules/habit/domain/useCases/delete-habit/delete-habit.service";
+import { IBaseRepositoryBuilder } from "@/infra/repository";
 
 export async function executeAICommandService(
   command: AICommand,
+  repositoryService: IBaseRepositoryBuilder,
 ): Promise<CommandExecutorResult> {
   try {
     switch (command.type) {
       case "CREATE_HABIT": {
-        const result = await createNewHabitService(command.data);
+        const result = await createNewHabitService(
+          command.data,
+          repositoryService,
+        );
         return {
           success: true,
           data: result,
@@ -22,7 +27,7 @@ export async function executeAICommandService(
       }
 
       case "GET_HABITS": {
-        const habits = await getHabitsService();
+        const habits = await getHabitsService(repositoryService);
         return {
           success: true,
           data: habits,
@@ -31,7 +36,10 @@ export async function executeAICommandService(
       }
 
       case "SEARCH_HABITS": {
-        const habits = await getHabitsByText(command.data.query);
+        const habits = await getHabitsByText(
+          command.data.query,
+          repositoryService,
+        );
         return {
           success: true,
           data: habits,
@@ -40,7 +48,10 @@ export async function executeAICommandService(
       }
 
       case "GET_HABIT_DETAILS": {
-        const habit = await getHabitDetailsService(command.data.id);
+        const habit = await getHabitDetailsService(
+          command.data.id,
+          repositoryService,
+        );
         if (!habit) throw new Error("Habit not found");
 
         return {
@@ -52,7 +63,7 @@ export async function executeAICommandService(
 
       case "UPDATE_HABIT": {
         const { id, updates } = command.data;
-        const result = await editHabitService(id, updates);
+        const result = await editHabitService(id, updates, repositoryService);
         return {
           success: true,
           data: result,
@@ -61,7 +72,7 @@ export async function executeAICommandService(
       }
 
       case "DELETE_HABIT": {
-        await deleteHabitService(command.data.id);
+        await deleteHabitService(command.data.id, repositoryService);
         return {
           success: true,
           data: { deleted: true, id: command.data.id },

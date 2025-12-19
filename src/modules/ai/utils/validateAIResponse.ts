@@ -2,7 +2,27 @@ import { AICommand } from "../domain/ai.model";
 
 export function validateAIResponse(response: string): AICommand | null {
   try {
-    const parsed = JSON.parse(response);
+    let cleanedResponse = response.trim();
+
+    if (cleanedResponse.startsWith("```") && cleanedResponse.endsWith("```")) {
+      cleanedResponse = cleanedResponse.substring(3);
+
+      cleanedResponse = cleanedResponse.substring(
+        0,
+        cleanedResponse.length - 3,
+      );
+
+      if (
+        cleanedResponse.startsWith("json") ||
+        cleanedResponse.startsWith("JSON")
+      ) {
+        cleanedResponse = cleanedResponse.replace(/^(json|JSON)\s*\n?/, "");
+      }
+
+      cleanedResponse = cleanedResponse.trim();
+    }
+
+    const parsed = JSON.parse(cleanedResponse);
 
     if (!parsed.type || !parsed.message) {
       return null;
@@ -23,7 +43,8 @@ export function validateAIResponse(response: string): AICommand | null {
     }
 
     return parsed as AICommand;
-  } catch {
+  } catch (err) {
+    console.log("ERROR", err);
     return null;
   }
 }

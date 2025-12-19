@@ -1,8 +1,10 @@
-import { repositoryService } from "@/shared/services/repository";
 import { Habit } from "../../habit.model";
-import { Collection } from "@/infra/repository";
+import { Collection, type IBaseRepositoryBuilder } from "@/infra/repository";
 
-export async function getHabitsByText(text: string): Promise<Habit[]> {
+export async function getHabitsByText(
+  text: string,
+  repositoryService: IBaseRepositoryBuilder,
+): Promise<Habit[]> {
   const habitsRepository = repositoryService.collection<Habit>(
     Collection.HABITS,
   );
@@ -10,5 +12,6 @@ export async function getHabitsByText(text: string): Promise<Habit[]> {
   const result = await habitsRepository.findBy({
     title: text,
   });
+
   return result;
 }

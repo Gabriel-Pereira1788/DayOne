@@ -11,6 +11,7 @@ export function AIScreenProvider({ children }: React.PropsWithChildren) {
     showBackToEnd: false,
     currentToken: "",
     streamingMessage: "",
+    currentAIMessage: null,
   });
   return (
     <AIScreenContext.Provider

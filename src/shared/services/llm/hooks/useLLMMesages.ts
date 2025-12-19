@@ -1,12 +1,13 @@
 import { LLMResponse, Message } from "@/infra/adapters/llm/types";
 import { useEffect, useState } from "react";
-import { useLLM } from "../context/LLMProvider";
+import { useLLM } from "@/infra/adapters/llm/hooks/useLLM";
 
 type Props = {
   systemPrompt: string;
   context: Message[];
   onDownloadProgress: (progress: number) => void;
   onTokenCallback?: (token: string) => void;
+  tools: Object[];
 };
 
 export function useLLMMessages({
@@ -14,6 +15,7 @@ export function useLLMMessages({
   context,
   onDownloadProgress,
   onTokenCallback,
+  tools,
 }: Props) {
   const llm = useLLM();
 
@@ -25,7 +27,18 @@ export function useLLMMessages({
     const initializeLLM = async () => {
       try {
         setError(null);
-        await llm.initialize({ onDownloadProgress, tokenCallback: onTokenCallback });
+        await llm.initialize({
+          onDownloadProgress,
+          tokenCallback: onTokenCallback,
+        });
+        llm.configure({
+          systemPrompt,
+          executeToolCallback: async (call) => {
+            console.log("TOKEN-CALLBACK", call);
+            return "";
+          },
+          tools,
+        });
         setIsReady(true);
       } catch (err) {
         const errorMessage =
@@ -46,7 +59,7 @@ export function useLLMMessages({
     if (!content.trim() || isGenerating || !llm.isInitialized()) {
       return;
     }
-
+    await llm.deleteMessage(0);
     const userMessage: Message = {
       role: "user",
       content: content,

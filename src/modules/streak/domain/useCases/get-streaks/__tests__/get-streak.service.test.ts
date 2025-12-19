@@ -1,23 +1,25 @@
-import { getStreakService } from '../get-streak.service';
-import { repositoryService } from '@/shared/services/repository';
-import { Collection } from '@/infra/repository';
-import { Streak } from '../../../streak.model';
+import { getStreakService } from "../get-streak.service";
+import { Collection } from "@/infra/repository";
+import { Streak } from "../../../streak.model";
+import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 
-describe('getStreakService', () => {
-  const streaksRepository = repositoryService.collection<Streak>(Collection.STREAKS);
+describe("getStreakService", () => {
+  const streaksRepository = inAppRepositoryBuilder.collection<Streak>(
+    Collection.STREAKS,
+  );
 
   beforeEach(() => {
     jest.clearAllMocks();
     streaksRepository.setMock?.([]);
   });
 
-  it('should return empty streak data when no streaks exist', async () => {
+  it("should return empty streak data when no streaks exist", async () => {
     streaksRepository.setMock?.([]);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result).toEqual({
-      habitId: 'habit-1',
+      habitId: "habit-1",
       currentStreak: 0,
       longestStreak: 0,
       completedDates: [],
@@ -25,7 +27,7 @@ describe('getStreakService', () => {
     });
   });
 
-  it('should calculate current streak correctly for consecutive days ending today', async () => {
+  it("should calculate current streak correctly for consecutive days ending today", async () => {
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
@@ -33,14 +35,14 @@ describe('getStreakService', () => {
     twoDaysAgo.setDate(today.getDate() - 2);
 
     const streaks: Streak[] = [
-      { id: '1', habitId: 'habit-1', createdAt: twoDaysAgo.toISOString() },
-      { id: '2', habitId: 'habit-1', createdAt: yesterday.toISOString() },
-      { id: '3', habitId: 'habit-1', createdAt: today.toISOString() },
+      { id: "1", habitId: "habit-1", createdAt: twoDaysAgo.toISOString() },
+      { id: "2", habitId: "habit-1", createdAt: yesterday.toISOString() },
+      { id: "3", habitId: "habit-1", createdAt: today.toISOString() },
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(3);
     expect(result.longestStreak).toBe(3);
@@ -48,7 +50,7 @@ describe('getStreakService', () => {
     expect(result.completedDates).toHaveLength(3);
   });
 
-  it('should calculate current streak correctly for consecutive days ending yesterday', async () => {
+  it("should calculate current streak correctly for consecutive days ending yesterday", async () => {
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
@@ -56,44 +58,44 @@ describe('getStreakService', () => {
     twoDaysAgo.setDate(today.getDate() - 2);
 
     const streaks: Streak[] = [
-      { id: '1', habitId: 'habit-1', createdAt: twoDaysAgo.toISOString() },
-      { id: '2', habitId: 'habit-1', createdAt: yesterday.toISOString() },
+      { id: "1", habitId: "habit-1", createdAt: twoDaysAgo.toISOString() },
+      { id: "2", habitId: "habit-1", createdAt: yesterday.toISOString() },
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(2);
     expect(result.longestStreak).toBe(2);
     expect(result.isActiveToday).toBe(false);
   });
 
-  it('should return 0 current streak when last completion was more than 1 day ago', async () => {
+  it("should return 0 current streak when last completion was more than 1 day ago", async () => {
     const threeDaysAgo = new Date();
     threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
     const fourDaysAgo = new Date();
     fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
 
     const streaks: Streak[] = [
-      { id: '1', habitId: 'habit-1', createdAt: fourDaysAgo.toISOString() },
-      { id: '2', habitId: 'habit-1', createdAt: threeDaysAgo.toISOString() },
+      { id: "1", habitId: "habit-1", createdAt: fourDaysAgo.toISOString() },
+      { id: "2", habitId: "habit-1", createdAt: threeDaysAgo.toISOString() },
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(0);
     expect(result.longestStreak).toBe(2);
     expect(result.isActiveToday).toBe(false);
   });
 
-  it('should calculate longest streak correctly with gaps in data', async () => {
+  it("should calculate longest streak correctly with gaps in data", async () => {
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
-    
+
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(today.getDate() - 7);
     const eightDaysAgo = new Date();
@@ -104,24 +106,24 @@ describe('getStreakService', () => {
     tenDaysAgo.setDate(today.getDate() - 10);
 
     const streaks: Streak[] = [
-      { id: '1', habitId: 'habit-1', createdAt: tenDaysAgo.toISOString() },
-      { id: '2', habitId: 'habit-1', createdAt: nineDaysAgo.toISOString() },
-      { id: '3', habitId: 'habit-1', createdAt: eightDaysAgo.toISOString() },
-      { id: '4', habitId: 'habit-1', createdAt: sevenDaysAgo.toISOString() },
-      { id: '5', habitId: 'habit-1', createdAt: yesterday.toISOString() },
-      { id: '6', habitId: 'habit-1', createdAt: today.toISOString() },
+      { id: "1", habitId: "habit-1", createdAt: tenDaysAgo.toISOString() },
+      { id: "2", habitId: "habit-1", createdAt: nineDaysAgo.toISOString() },
+      { id: "3", habitId: "habit-1", createdAt: eightDaysAgo.toISOString() },
+      { id: "4", habitId: "habit-1", createdAt: sevenDaysAgo.toISOString() },
+      { id: "5", habitId: "habit-1", createdAt: yesterday.toISOString() },
+      { id: "6", habitId: "habit-1", createdAt: today.toISOString() },
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(2); // hoje e ontem
     expect(result.longestStreak).toBe(4); // 7-10 dias atrás
     expect(result.isActiveToday).toBe(true);
   });
 
-  it('should remove duplicate entries for the same day', async () => {
+  it("should remove duplicate entries for the same day", async () => {
     const today = new Date();
     const todayMorning = new Date(today);
     todayMorning.setHours(9, 0, 0, 0);
@@ -129,13 +131,13 @@ describe('getStreakService', () => {
     todayEvening.setHours(21, 0, 0, 0);
 
     const streaks: Streak[] = [
-      { id: '1', habitId: 'habit-1', createdAt: todayMorning.toISOString() },
-      { id: '2', habitId: 'habit-1', createdAt: todayEvening.toISOString() },
+      { id: "1", habitId: "habit-1", createdAt: todayMorning.toISOString() },
+      { id: "2", habitId: "habit-1", createdAt: todayEvening.toISOString() },
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(1);
     expect(result.longestStreak).toBe(1);
@@ -143,20 +145,20 @@ describe('getStreakService', () => {
     expect(result.isActiveToday).toBe(true);
   });
 
-  it('should handle streaks with missing createdAt', async () => {
+  it("should handle streaks with missing createdAt", async () => {
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
 
     const streaks: Streak[] = [
-      { id: '1', habitId: 'habit-1' }, // sem createdAt
-      { id: '2', habitId: 'habit-1', createdAt: yesterday.toISOString() },
-      { id: '3', habitId: 'habit-1', createdAt: today.toISOString() },
+      { id: "1", habitId: "habit-1" }, // sem createdAt
+      { id: "2", habitId: "habit-1", createdAt: yesterday.toISOString() },
+      { id: "3", habitId: "habit-1", createdAt: today.toISOString() },
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(2);
     expect(result.longestStreak).toBe(2);
@@ -164,16 +166,16 @@ describe('getStreakService', () => {
     expect(result.isActiveToday).toBe(true);
   });
 
-  it('should handle single day streak', async () => {
+  it("should handle single day streak", async () => {
     const today = new Date();
 
     const streaks: Streak[] = [
-      { id: '1', habitId: 'habit-1', createdAt: today.toISOString() },
+      { id: "1", habitId: "habit-1", createdAt: today.toISOString() },
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(1);
     expect(result.longestStreak).toBe(1);
@@ -181,7 +183,7 @@ describe('getStreakService', () => {
     expect(result.isActiveToday).toBe(true);
   });
 
-  it('should sort dates correctly regardless of input order', async () => {
+  it("should sort dates correctly regardless of input order", async () => {
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
@@ -190,14 +192,14 @@ describe('getStreakService', () => {
 
     // Datas fora de ordem
     const streaks: Streak[] = [
-      { id: '2', habitId: 'habit-1', createdAt: today.toISOString() },
-      { id: '1', habitId: 'habit-1', createdAt: twoDaysAgo.toISOString() },
-      { id: '3', habitId: 'habit-1', createdAt: yesterday.toISOString() },
+      { id: "2", habitId: "habit-1", createdAt: today.toISOString() },
+      { id: "1", habitId: "habit-1", createdAt: twoDaysAgo.toISOString() },
+      { id: "3", habitId: "habit-1", createdAt: yesterday.toISOString() },
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(3);
     expect(result.longestStreak).toBe(3);
@@ -205,20 +207,20 @@ describe('getStreakService', () => {
     expect(result.isActiveToday).toBe(true);
   });
 
-  it('should filter streaks by habitId correctly', async () => {
+  it("should filter streaks by habitId correctly", async () => {
     const today = new Date();
     const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
 
     const streaks: Streak[] = [
-      { id: '1', habitId: 'habit-1', createdAt: yesterday.toISOString() },
-      { id: '2', habitId: 'habit-1', createdAt: today.toISOString() },
-      { id: '3', habitId: 'habit-2', createdAt: today.toISOString() }, // different habit
+      { id: "1", habitId: "habit-1", createdAt: yesterday.toISOString() },
+      { id: "2", habitId: "habit-1", createdAt: today.toISOString() },
+      { id: "3", habitId: "habit-2", createdAt: today.toISOString() }, // different habit
     ];
 
     streaksRepository.setMock?.(streaks);
 
-    const result = await getStreakService('habit-1');
+    const result = await getStreakService("habit-1", inAppRepositoryBuilder);
 
     expect(result.currentStreak).toBe(2);
     expect(result.longestStreak).toBe(2);

@@ -1,17 +1,18 @@
 import { executeAICommandService } from "../execute-ai-command.service";
-import { repositoryService } from "@/shared/services/repository";
+
 import { Collection } from "@/infra/repository";
 import { habitListMock } from "@/modules/habit/__mocks__/habit-list.mock";
 import { AICommand } from "../../../ai.model";
 import { HabitDTO, Habit } from "@/modules/habit/domain/habit.model";
+import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 
 beforeEach(() => {
-  const habitRepository = repositoryService.collection(Collection.HABITS);
+  const habitRepository = inAppRepositoryBuilder.collection(Collection.HABITS);
   habitRepository.setMock?.(habitListMock);
 });
 
 afterEach(() => {
-  const habitRepository = repositoryService.collection(Collection.HABITS);
+  const habitRepository = inAppRepositoryBuilder.collection(Collection.HABITS);
   habitRepository.setMock?.([]);
 });
 
@@ -31,7 +32,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data).toBeDefined();
@@ -54,7 +58,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.frequency).toBe("weekly");
@@ -76,7 +83,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.frequency).toBe("monthly");
@@ -97,7 +107,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(false);
       expect(result.error).toBeDefined();
@@ -113,7 +126,10 @@ describe("executeAICommandService", () => {
         data: {},
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(Array.isArray(result.data)).toBe(true);
@@ -132,7 +148,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(Array.isArray(result.data)).toBe(true);
@@ -148,7 +167,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(Array.isArray(result.data)).toBe(true);
@@ -163,7 +185,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(Array.isArray(result.data)).toBe(true);
@@ -181,7 +206,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data).toBeDefined();
@@ -199,7 +227,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(false);
       expect(result.error).toBeDefined();
@@ -220,7 +251,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.title).toBe("Updated Exercise Habit");
@@ -242,11 +276,16 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.title).toBe("Advanced Meditation");
-      expect(result.data.description).toBe("Deep meditation practice with mindfulness");
+      expect(result.data.description).toBe(
+        "Deep meditation practice with mindfulness",
+      );
       expect(result.data.targetDurationInDays).toBe(60);
     });
 
@@ -263,7 +302,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.frequency).toBe("weekly");
@@ -282,7 +324,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(false);
       expect(result.error).toBeDefined();
@@ -301,7 +346,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(false);
       expect(result.error).toBeDefined();
@@ -318,7 +366,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.deleted).toBe(true);
@@ -335,7 +386,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(false);
       expect(result.error).toBeDefined();
@@ -353,7 +407,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.message).toBe("Here is your response message");
@@ -369,7 +426,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.message).toBe("");
@@ -384,7 +444,10 @@ describe("executeAICommandService", () => {
         data: {},
       } as any;
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(false);
       expect(result.error).toBe("Command not recognized: UNKNOWN_COMMAND");
@@ -408,7 +471,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(false);
       expect(result.error).toBeDefined();
@@ -423,7 +489,10 @@ describe("executeAICommandService", () => {
         data: {},
       };
 
-      const successResult = await executeAICommandService(successCommand);
+      const successResult = await executeAICommandService(
+        successCommand,
+        inAppRepositoryBuilder,
+      );
       expect(successResult.originalCommand).toEqual(successCommand);
 
       const errorCommand: AICommand = {
@@ -434,7 +503,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const errorResult = await executeAICommandService(errorCommand);
+      const errorResult = await executeAICommandService(
+        errorCommand,
+        inAppRepositoryBuilder,
+      );
       expect(errorResult.originalCommand).toEqual(errorCommand);
     });
   });
@@ -455,14 +527,19 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.title).toBe(command.data.title);
       expect(result.data.description).toBe(command.data.description);
       expect(result.data.frequency).toBe(command.data.frequency);
       expect(result.data.dayOfWeek).toBe(command.data.dayOfWeek);
-      expect(result.data.targetDurationInDays).toBe(command.data.targetDurationInDays);
+      expect(result.data.targetDurationInDays).toBe(
+        command.data.targetDurationInDays,
+      );
       expect(result.data.hours).toBe(command.data.hours);
       expect(result.data.minutes).toBe(command.data.minutes);
     });
@@ -479,7 +556,10 @@ describe("executeAICommandService", () => {
         },
       };
 
-      const result = await executeAICommandService(command);
+      const result = await executeAICommandService(
+        command,
+        inAppRepositoryBuilder,
+      );
 
       expect(result.success).toBe(true);
       expect(result.data.title).toBe("Updated Title Only");

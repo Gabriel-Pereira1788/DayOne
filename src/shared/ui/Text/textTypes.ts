@@ -30,7 +30,7 @@ type Preset =
 
 interface CommonTextProps<T> {
   testID?: string;
-  text: string;
+  text?: string;
   align?: 'center' | 'right' | 'left' | 'auto' | 'justify';
   color?: keyof Theme['colors'];
   setColorsTheme?: {

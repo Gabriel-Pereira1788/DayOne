@@ -1,7 +1,9 @@
-import { Collection } from "@/infra/repository";
-import { repositoryService } from "@/shared/services/repository";
+import { Collection, IBaseRepositoryBuilder } from "@/infra/repository";
 
-export async function deleteHabitService(id: string) {
+export async function deleteHabitService(
+  id: string,
+  repositoryService: IBaseRepositoryBuilder,
+) {
   const habitRepository = repositoryService.collection(Collection.HABITS);
   await habitRepository.delete(id);
   return id;

@@ -1,7 +1,7 @@
 PODS:
-  - EXConstants (17.1.7):
+  - EXConstants (18.0.12):
     - ExpoModulesCore
-  - Expo (54.0.25):
+  - Expo (54.0.29):
     - ExpoModulesCore
     - hermes-engine
     - RCTRequired
@@ -26,21 +26,21 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - ExpoAsset (11.1.7):
+  - ExpoAsset (12.0.11):
     - ExpoModulesCore
-  - ExpoFileSystem (18.1.11):
+  - ExpoFileSystem (19.0.21):
     - ExpoModulesCore
-  - ExpoFont (14.0.9):
+  - ExpoFont (14.0.10):
     - ExpoModulesCore
   - ExpoHead (5.0.7):
     - ExpoModulesCore
-  - ExpoKeepAwake (15.0.7):
+  - ExpoKeepAwake (15.0.8):
     - ExpoModulesCore
   - ExpoLinearGradient (14.1.5):
     - ExpoModulesCore
   - ExpoLinking (7.1.7):
     - ExpoModulesCore
-  - ExpoModulesCore (3.0.26):
+  - ExpoModulesCore (3.0.29):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -63,9 +63,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - ExpoSplashScreen (31.0.11):
-    - ExpoModulesCore
-  - ExpoUI (0.2.0-beta.7):
+  - ExpoSplashScreen (31.0.12):
     - ExpoModulesCore
   - FBLazyVector (0.81.4)
   - hermes-engine (0.81.4):
@@ -97,6 +95,30 @@ PODS:
     - Yoga
   - NitroModules (0.31.10):
     - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
+  - NitroOrb (1.0.2):
+    - hermes-engine
+    - NitroModules
     - RCTRequired
     - RCTTypeSafety
     - React-callinvoker
@@ -1421,7 +1443,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-keyboard-controller (1.19.6):
+  - react-native-keyboard-controller (1.20.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1433,7 +1455,7 @@ PODS:
     - React-graphics
     - React-ImageManager
     - React-jsi
-    - react-native-keyboard-controller/common (= 1.19.6)
+    - react-native-keyboard-controller/common (= 1.20.1)
     - React-NativeModulesApple
     - React-RCTFabric
     - React-renderercss
@@ -1444,7 +1466,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-keyboard-controller/common (1.19.6):
+  - react-native-keyboard-controller/common (1.20.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1906,7 +1928,7 @@ PODS:
     - React-perflogger (= 0.81.4)
     - React-utils (= 0.81.4)
     - ReactNativeDependencies
-  - ReactNativeBlur (4.2.0):
+  - ReactNativeBlur (4.2.2):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1953,7 +1975,7 @@ PODS:
     - Yoga
   - RNLiveAudioStream (1.1.1):
     - React
-  - RNReanimated (4.1.5):
+  - RNReanimated (4.1.3):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -1975,10 +1997,10 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNReanimated/reanimated (= 4.1.5)
+    - RNReanimated/reanimated (= 4.1.3)
     - RNWorklets
     - Yoga
-  - RNReanimated/reanimated (4.1.5):
+  - RNReanimated/reanimated (4.1.3):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2000,10 +2022,10 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNReanimated/reanimated/apple (= 4.1.5)
+    - RNReanimated/reanimated/apple (= 4.1.3)
     - RNWorklets
     - Yoga
-  - RNReanimated/reanimated/apple (4.1.5):
+  - RNReanimated/reanimated/apple (4.1.3):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2074,7 +2096,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - RNSVG (15.15.0):
+  - RNSVG (15.15.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2095,9 +2117,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNSVG/common (= 15.15.0)
+    - RNSVG/common (= 15.15.1)
     - Yoga
-  - RNSVG/common (15.15.0):
+  - RNSVG/common (15.15.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2221,18 +2243,18 @@ DEPENDENCIES:
   - Expo (from `../node_modules/expo`)
   - ExpoAsset (from `../node_modules/expo-asset/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
-  - ExpoFont (from `../node_modules/expo/node_modules/expo-font/ios`)
+  - ExpoFont (from `../node_modules/expo-font/ios`)
   - ExpoHead (from `../node_modules/expo-router/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoLinearGradient (from `../node_modules/expo-linear-gradient/ios`)
   - ExpoLinking (from `../node_modules/expo-linking/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - ExpoSplashScreen (from `../node_modules/expo-splash-screen/ios`)
-  - "ExpoUI (from `../node_modules/@expo/ui/ios`)"
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - NitroGlassView (from `../node_modules/react-native-nitro-glass`)
   - NitroModules (from `../node_modules/react-native-nitro-modules`)
+  - NitroOrb (from `../node_modules/react-native-nitro-orb`)
   - RCTDeprecation (from `../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation`)
   - RCTRequired (from `../node_modules/react-native/Libraries/Required`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
@@ -2326,7 +2348,7 @@ EXTERNAL SOURCES:
   ExpoFileSystem:
     :path: "../node_modules/expo-file-system/ios"
   ExpoFont:
-    :path: "../node_modules/expo/node_modules/expo-font/ios"
+    :path: "../node_modules/expo-font/ios"
   ExpoHead:
     :path: "../node_modules/expo-router/ios"
   ExpoKeepAwake:
@@ -2339,8 +2361,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-modules-core"
   ExpoSplashScreen:
     :path: "../node_modules/expo-splash-screen/ios"
-  ExpoUI:
-    :path: "../node_modules/@expo/ui/ios"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   hermes-engine:
@@ -2350,6 +2370,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-nitro-glass"
   NitroModules:
     :path: "../node_modules/react-native-nitro-modules"
+  NitroOrb:
+    :path: "../node_modules/react-native-nitro-orb"
   RCTDeprecation:
     :path: "../node_modules/react-native/ReactApple/Libraries/RCTFoundation/RCTDeprecation"
   RCTRequired:
@@ -2506,22 +2528,22 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  EXConstants: 98bcf0f22b820f9b28f9fee55ff2daededadd2f8
-  Expo: 111394d38f32be09385d4c7f70cc96d2da438d0d
-  ExpoAsset: ef06e880126c375f580d4923fdd1cdf4ee6ee7d6
-  ExpoFileSystem: 7f92f7be2f5c5ed40a7c9efc8fa30821181d9d63
-  ExpoFont: cf9d90ec1d3b97c4f513211905724c8171f82961
+  EXConstants: 805f35b1b295c542ca6acce836f21a1f9ee104d5
+  Expo: 8fa2204bf8483fe546b4ec87c90d3ca189afc8db
+  ExpoAsset: 23a958e97d3d340919fe6774db35d563241e6c03
+  ExpoFileSystem: 858a44267a3e6e9057e0888ad7c7cfbf55d52063
+  ExpoFont: 35ac6191ed86bbf56b3ebd2d9154eda9fad5b509
   ExpoHead: af044f3e9c99e7d8d21bf653b4c2f2ef53a7f082
-  ExpoKeepAwake: 1a2e820692e933c94a565ec3fbbe38ac31658ffe
+  ExpoKeepAwake: 55f75eca6499bb9e4231ebad6f3e9cb8f99c0296
   ExpoLinearGradient: 7734c8059972fcf691fb4330bcdf3390960a152d
   ExpoLinking: d5c183998ca6ada66ff45e407e0f965b398a8902
-  ExpoModulesCore: e8ec7f8727caf51a49d495598303dd420ca994bf
-  ExpoSplashScreen: 268b2f128dc04284c21010540a6c4dd9f95003e3
-  ExpoUI: b99a1d1ef5352a60bebf4f4fd3a50d2f896ae804
+  ExpoModulesCore: f3da4f1ab5a8375d0beafab763739dbee8446583
+  ExpoSplashScreen: 76af87337650d06926aa7d0157fe98b4fddca336
   FBLazyVector: 9e0cd874afd81d9a4d36679daca991b58b260d42
   hermes-engine: 35c763d57c9832d0eef764316ca1c4d043581394
   NitroGlassView: 60027e57e688ab014e50554db195a2b20000d91e
   NitroModules: a71a5ab2911caf79e45170e6e12475b5260a12d0
+  NitroOrb: d15df790206d37b111baec205565d13c72c661e3
   opencv-rne: 63e933ae2373fc91351f9a348dc46c3f523c2d3f
   RCTDeprecation: 7487d6dda857ccd4cb3dd6ecfccdc3170e85dcbc
   RCTRequired: 54128b7df8be566881d48c7234724a78cb9b6157
@@ -2557,7 +2579,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: fbe1da882a187e5898bdf125e1cc6e603d27ecae
   React-microtasksnativemodule: 76905804171d8ccbe69329fc84c57eb7934add7f
   react-native-executorch: 99e991e55ab8fcfc8e53fc4f53116da49302d97c
-  react-native-keyboard-controller: c423a0f677713a1a6ec644d94f9954e5e0af23ec
+  react-native-keyboard-controller: 0ea45376ff53c0f9118d9bc4a772aeae737e0d39
   react-native-mmkv: 3d69c8bbdbceb1c0d3754863ecffa6ec24e4be12
   react-native-safe-area-context: e4223e0c3d6770be30a9353ad2eaf99368b2f6e8
   React-NativeModulesApple: a9464983ccc0f66f45e93558671f60fc7536e438
@@ -2590,13 +2612,13 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: 433ddfb4536948630aadd5bd925aff8a632d2fe3
   ReactCodegen: a15ad48730e9fb2a51a4c9f61fe1ed253dfcf10f
   ReactCommon: 149b6c05126f2e99f2ed0d3c63539369546f8cae
-  ReactNativeBlur: f23e2f9bec22ddbf44343fad92726f75cc5308c2
+  ReactNativeBlur: da88db82546b9ff0c5bd0e9964b4be60f38e001f
   ReactNativeDependencies: ed6d1e64802b150399f04f1d5728ec16b437251e
   RNGestureHandler: 723f29dac55e25f109d263ed65cecc4b9c4bd46a
   RNLiveAudioStream: 93ac2bb6065be9018d0b00157b220f11cebc1513
-  RNReanimated: 1442a577e066e662f0ce1cd1864a65c8e547aee0
+  RNReanimated: 3895a29fdf77bbe2a627e1ed599a5e5d1df76c29
   RNScreens: 61c18865ab074f4d995ac8d7cf5060522a649d05
-  RNSVG: 99ab6158011aece12019b236f168faa7a1e41af6
+  RNSVG: cf9ae78f2edf2988242c71a6392d15ff7dd62522
   RNWorklets: 54d8dffb7f645873a58484658ddfd4bd1a9a0bc1
   ScheduledNotifications: 5d66afc5f78385741e4cf09de268cca6544fbd14
   Yoga: 051f086b5ccf465ff2ed38a2cf5a558ae01aaaa1

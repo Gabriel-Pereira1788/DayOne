@@ -1,9 +1,11 @@
-import { repositoryService } from "@/shared/services/repository";
 import { Habit, HabitDTO } from "../../habit.model";
-import { Collection } from "@/infra/repository";
+import { Collection, IBaseRepositoryBuilder } from "@/infra/repository";
 import { FrequencyValidationError } from "../../error";
 
-export async function createNewHabitService(habitDTO: HabitDTO) {
+export async function createNewHabitService(
+  habitDTO: HabitDTO,
+  repositoryService: IBaseRepositoryBuilder,
+) {
   if (habitDTO.frequency === "weekly" && habitDTO.dayOfWeek === undefined) {
     throw new FrequencyValidationError(
       "dayOfWeek is required when frequency is weekly",

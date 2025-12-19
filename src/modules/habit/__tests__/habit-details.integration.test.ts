@@ -1,5 +1,5 @@
 import { Collection } from "@/infra/repository";
-import { repositoryService } from "@/shared/services/repository";
+
 import {
   renderApp,
   waitFor,
@@ -10,14 +10,15 @@ import {
 import { habitListMock } from "../__mocks__/habit-list.mock";
 import { Habit } from "../domain/habit.model";
 import { HabitQueryKeys } from "../types";
+import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 
 beforeEach(() => {
-  const habitRepository = repositoryService.collection(Collection.HABITS);
+  const habitRepository = inAppRepositoryBuilder.collection(Collection.HABITS);
   habitRepository.setMock?.(habitListMock);
 });
 
 afterEach(() => {
-  const habitRepository = repositoryService.collection(Collection.HABITS);
+  const habitRepository = inAppRepositoryBuilder.collection(Collection.HABITS);
   habitRepository.setMock?.([]);
 });
 
@@ -40,8 +41,12 @@ async function renderHabitDetailsScreen(habitToRender?: Habit) {
   const habitDescription = screen.getByText(habitData.description!);
   const habitIcon = screen.getByTestId("habit-icon-element");
 
-  const prevCalendarButton = screen.getByTestId("prev-month-button");
-  const nextCalendarButton = screen.getByTestId("next-month-button");
+  const prevCalendarButton = await waitFor(() =>
+    screen.getByTestId("prev-month-button"),
+  );
+  const nextCalendarButton = await waitFor(() =>
+    screen.getByTestId("next-month-button"),
+  );
   const deleteHabitButton = screen.getByTestId("delete-habit-button");
   return {
     editHabitRedirectButton,

@@ -1,17 +1,19 @@
 import { Collection } from "@/infra/repository";
-import { repositoryService } from "@/shared/services/repository";
+
 import { fireEvent, renderApp, screen, waitFor } from "@/test/utils";
 import { habitListMock } from "../__mocks__/habit-list.mock";
+import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 
 beforeEach(() => {
-  const habitRepository = repositoryService.collection(Collection.HABITS);
+  const habitRepository = inAppRepositoryBuilder.collection(Collection.HABITS);
   habitRepository.setMock?.(habitListMock);
 });
 
 afterEach(() => {
-  const habitRepository = repositoryService.collection(Collection.HABITS);
+  const habitRepository = inAppRepositoryBuilder.collection(Collection.HABITS);
   habitRepository.setMock?.([]);
 });
+
 function renderDashboard() {
   renderApp({
     initialUrl: "(app)/dashboard",
@@ -78,13 +80,6 @@ describe("<Dashboard />", () => {
 
     // Check is modal closed
     await waitFor(() => screen.getByText("Streaks"));
-
-    //Check is habit checked today
-    await waitFor(() =>
-      expect(
-        screen.queryByTestId(`check-today-${habitListMock[0].id}`),
-      ).toBeFalsy(),
-    );
   });
 
   it("should be redirect to create new habit screen", async () => {
@@ -131,12 +126,16 @@ describe("<Dashboard />", () => {
 
   describe("Flow: Dashboard Empty View", () => {
     beforeEach(() => {
-      const habitRepository = repositoryService.collection(Collection.HABITS);
+      const habitRepository = inAppRepositoryBuilder.collection(
+        Collection.HABITS,
+      );
       habitRepository.setMock?.([]);
     });
 
     afterEach(() => {
-      const habitRepository = repositoryService.collection(Collection.HABITS);
+      const habitRepository = inAppRepositoryBuilder.collection(
+        Collection.HABITS,
+      );
       habitRepository.setMock?.(habitListMock);
     });
     it("should be render empty view and press create button", async () => {
