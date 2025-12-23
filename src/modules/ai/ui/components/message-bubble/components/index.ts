@@ -1,1 +1,0 @@
-export { AnimatedMessageText } from './animated-message-text';

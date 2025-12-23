@@ -1,25 +1,71 @@
 import { useLLMMessages } from "@/shared/services/llm";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Keyboard } from "react-native";
-import { useAIScreenContext } from "../../context";
 import { AI_PROMPT } from "@/modules/ai/constants/prompt";
-import { validateAIResponse } from "@/modules/ai/utils/validateAIResponse";
 import { useExecuteAICommand } from "@/modules/ai/domain/useCases/execute-ai-command";
+import { TOOL_DEFINITIONS } from "@/modules/ai/constants/tools";
+import {
+  validateCallTool,
+  validateCallToolArguments,
+} from "@/modules/ai/utils/validateCallTool";
+import { AICommand, CommandType } from "@/modules/ai/domain/ai.model";
+import { buildCommandMessage } from "@/modules/ai/utils/buildCommandMessage";
+import { DEFAULT_AI_MESSAGE } from "@/modules/ai/constants/default";
+import { Tool } from "@/infra/adapters/llm/types";
 
 export function useAIActionHandlerController() {
-  const aiChatDispatch = useAIScreenContext((ctx) => ctx.dispatch);
-  const { execute } = useExecuteAICommand({});
   const [downloadProgress, setDownloadProgress] = useState(0);
+  const [currentAIMessage, setCurrentAIMessage] = useState(DEFAULT_AI_MESSAGE);
 
-  const { isGenerating, generate, isReady, error } = useLLMMessages({
-    context: [],
-    tools:[],
+  const textRef = useRef("");
+
+  const { execute } = useExecuteAICommand({});
+
+  const { isGenerating, isReady, sendMessage, interrupt } = useLLMMessages({
+    tools: TOOL_DEFINITIONS,
     systemPrompt: AI_PROMPT,
-    onTokenCallback: (token) => {
-      aiChatDispatch({
-        type: "SET_CURRENT_TOKEN",
-        payload: token,
-      });
+    onExecuteToolCallback: async (call) => {
+      if (!validateCallTool(call)) {
+        console.error(`Invalid tool: ${call.toolName}`);
+        return null;
+      }
+
+      const validation = validateCallToolArguments(call);
+      if (!validation.isValid) {
+        console.error(
+          `Invalid arguments for ${call.toolName}: ${validation.error}`,
+        );
+        interrupt();
+        sendMessage(`{
+             content:${textRef.current},
+             error:Invalid arguments for ${call.toolName}: ${validation.error}
+            }`);
+        return null;
+      }
+
+      try {
+        const command: AICommand = {
+          type: call.toolName as CommandType,
+          message: `Executing ${call.toolName}`,
+          data: call.arguments,
+        } as AICommand;
+
+        const result = await execute(command);
+
+        const commandMessage = buildCommandMessage(call, result);
+        if (result.data) {
+          setCurrentAIMessage({
+            content: commandMessage,
+            data: result.data,
+            role: "assistant",
+          });
+        }
+
+        return commandMessage;
+      } catch (error) {
+        console.error(`Error executing ${call.toolName}:`, error);
+        return `Failed to execute ${call.toolName}: ${error}`;
+      }
     },
     onDownloadProgress: (progress) => {
       setDownloadProgress(progress);
@@ -32,39 +78,17 @@ export function useAIActionHandlerController() {
 
       Keyboard.dismiss();
 
-      aiChatDispatch({
-        type: "ADD_USER_MESSAGE",
-        payload: {
-          content: text,
-          role: "user",
-        },
-      });
+      textRef.current = text;
 
-      const response = await generate(text);
-      if (!response) return;
+      const result = await sendMessage(text);
 
-      const command = validateAIResponse(response?.content);
-
-      if (command) {
-        const result = await execute(command);
-
-        aiChatDispatch({
-          type: "SET_CURRENT_AI_MESSAGE",
-          payload: {
-            content: command.message,
-            role: response.role,
-            data:
-              command.type !== "DELETE_HABIT" && command.type.includes("HABIT")
-                ? result.data
-                : undefined,
-          },
-        });
-      }
+      return;
     },
     [isReady, isGenerating],
   );
 
   return {
+    currentAIMessage,
     downloadProgress,
     handleSendMessage,
     isReady,

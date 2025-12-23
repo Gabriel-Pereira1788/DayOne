@@ -69,15 +69,3 @@ export type AICommand =
   | UpdateHabitCommand
   | DeleteHabitCommand
   | ResponseCommand;
-
-export const isCreateHabitCommand = (cmd: AICommand): cmd is CreateHabitCommand =>
-  cmd.type === "CREATE_HABIT";
-
-export const isGetHabitsCommand = (cmd: AICommand): cmd is GetHabitsCommand =>
-  cmd.type === "GET_HABITS";
-
-export const isSearchHabitsCommand = (cmd: AICommand): cmd is SearchHabitsCommand =>
-  cmd.type === "SEARCH_HABITS";
-
-export const isResponseCommand = (cmd: AICommand): cmd is ResponseCommand =>
-  cmd.type === "RESPONSE";

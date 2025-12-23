@@ -63,7 +63,6 @@ export function RootStack() {
         }}
         name="(app)/new-habit"
       />
-      <Stack.Screen name="(app)/ai-chat/index" />
     </Stack>
   );
 }

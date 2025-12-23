@@ -9,6 +9,7 @@ export function ProgressBar({ progress }: ProgressBarProps) {
   return (
     <View style={styles.container}>
       <View
+        testID="progress-bar"
         style={{
           height: "100%",
           backgroundColor: palette.surface.tertiary,

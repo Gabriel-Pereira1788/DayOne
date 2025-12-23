@@ -59,7 +59,7 @@ export async function createNewHabitService(
   const startDate = new Date();
 
   const endDate = new Date(startDate);
-  endDate.setDate(startDate.getDate() + habitDTO.targetDurationInDays);
+  endDate.setDate(startDate.getDate() + (habitDTO?.targetDurationInDays || 30));
 
   const habitCompleteData: Habit = {
     ...habitDTO,

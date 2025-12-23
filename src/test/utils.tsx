@@ -16,12 +16,11 @@ import Dashboard from "../../app/(app)/dashboard";
 import NewHabit from "../../app/(app)/new-habit";
 import EditHabit from "../../app/(app)/edit-habit";
 import HabitDetails from "../../app/(app)/habit-details/[id]";
-import AiChat from "../../app/(app)/ai-chat";
-import type { LLMServiceImpl } from "@/infra/adapters/llm/types";
 import { DIProvider } from "@/infra/DI/context";
 import { DIKeys } from "@/infra/DI/types";
 import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 import { inAppScheduleNotification } from "@/infra/adapters/schedule-notification/implementation/inApp/in-app-schedule-notification";
+import { inAppLLM } from "@/infra/adapters/llm/implementation/inApp";
 
 const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -41,7 +40,7 @@ export function Wrapper({ children }: React.PropsWithChildren) {
       <ThemeProvider theme={theme}>
         <DIProvider
           config={(container) => {
-            container.registerService(DIKeys.LLMService, {} as LLMServiceImpl);
+            container.registerService(DIKeys.LLMService, inAppLLM);
             container.registerService(DIKeys.Storage, inAppStorage);
             container.registerService(
               DIKeys.ScheduleNotification,
@@ -99,7 +98,6 @@ export function renderApp({
       "(app)/new-habit": () => <NewHabit />,
       "(app)/edit-habit/index": () => <EditHabit />,
       "(app)/habit-details/[id]/index": () => <HabitDetails />,
-      "(app)/ai-chat/index": () => <AiChat />,
     },
     {
       wrapper: Wrapper,

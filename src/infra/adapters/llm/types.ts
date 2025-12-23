@@ -21,10 +21,10 @@ export interface InitializeProps {
 
 export interface LLMServiceImpl {
   initialize({ onDownloadProgress }: InitializeProps): Promise<void>;
-  generate(messages: Message[]): Promise<LLMResponse>;
+  sendMessage(content: string): Promise<Message[]>;
   isInitialized(): boolean;
   deleteModel(): void;
-  deleteMessage(id: number): Promise<void>;
+  interrupt(): void;
   configure(config: Configure): void;
 }
 
@@ -35,6 +35,7 @@ export interface Tool {
 
 export interface Configure {
   systemPrompt: string;
+  initialMessageHistory?: Message[];
   tools: Object[];
   executeToolCallback: (call: Tool) => Promise<string | null>;
 }

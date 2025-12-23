@@ -1,14 +1,10 @@
 import { Box, Text } from "@/shared/ui";
 import Animated, { FadeInDown } from "react-native-reanimated";
-import { useAIScreenContext } from "../../context";
 
 import { AIMessageDataRender } from "../ai-message-data-render";
+import { AICurrentMessageProps } from "./types";
 
-export function AICurrentMessage() {
-  const currentAIMessage = useAIScreenContext(
-    (ctx) => ctx.state.currentAIMessage,
-  );
-
+export function AICurrentMessage({ currentAIMessage }: AICurrentMessageProps) {
   if (!currentAIMessage) return null;
 
   const habitData = currentAIMessage.data
@@ -18,8 +14,14 @@ export function AICurrentMessage() {
     : undefined;
 
   if (habitData) {
-    return <AIMessageDataRender habitData={habitData} />;
+    return (
+      <AIMessageDataRender
+        habitData={habitData}
+        messageContent={currentAIMessage.content}
+      />
+    );
   }
+
   return (
     <Animated.View entering={FadeInDown}>
       <Text

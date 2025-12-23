@@ -5,6 +5,7 @@ import Animated from "react-native-reanimated";
 export function AIChatTypingIndicator() {
   return (
     <Box
+      testID="chat-typing-indicator"
       marginBottom="sp12"
       paddingHorizontal="sp20"
       flexDirection="row"

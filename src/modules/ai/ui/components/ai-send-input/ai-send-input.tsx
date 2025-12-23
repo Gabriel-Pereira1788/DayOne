@@ -56,22 +56,7 @@ export function AISendInput({ onSend }: AISendInputProps) {
         </NitroGlassView>
       </Pressable>
 
-      {/*<Pressable onPress={() => {}}>
-        <NitroGlassView
-          effect="regular"
-          interactive
-          style={{
-            width: 50,
-            height: 50,
-            borderRadius: 100,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Icon iconName={"microphone"} size={25} />
-        </NitroGlassView>
-      </Pressable>*/}
-      <Pressable onPress={handleSend}>
+      <Pressable onPress={handleSend} testID="send-button">
         <NitroGlassView
           effect="regular"
           interactive

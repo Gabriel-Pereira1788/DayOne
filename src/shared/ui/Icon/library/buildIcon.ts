@@ -88,5 +88,8 @@ export const mappedIcons = {
 };
 
 export function buildIcon(iconName: IconProps["iconName"]) {
-  return mappedIcons[iconName];
+  if (Object.keys(mappedIcons).includes(iconName)) {
+    return mappedIcons[iconName];
+  }
+  return mappedIcons.bell;
 }

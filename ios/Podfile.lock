@@ -140,7 +140,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - opencv-rne (0.1.0)
+  - opencv-rne (4.11.0)
   - RCTDeprecation (0.81.4)
   - RCTRequired (0.81.4)
   - RCTTypeSafety (0.81.4):
@@ -1420,9 +1420,9 @@ PODS:
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-  - react-native-executorch (0.4.10):
+  - react-native-executorch (0.5.8):
     - hermes-engine
-    - opencv-rne (~> 0.1.0)
+    - opencv-rne (~> 4.11.0)
     - RCTRequired
     - RCTTypeSafety
     - React-Core
@@ -1973,8 +1973,6 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - RNLiveAudioStream (1.1.1):
-    - React
   - RNReanimated (4.1.3):
     - hermes-engine
     - RCTRequired
@@ -2326,7 +2324,6 @@ DEPENDENCIES:
   - "ReactNativeBlur (from `../node_modules/@sbaiahmed1/react-native-blur`)"
   - ReactNativeDependencies (from `../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNLiveAudioStream (from `../node_modules/react-native-live-audio-stream`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -2512,8 +2509,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNLiveAudioStream:
-    :path: "../node_modules/react-native-live-audio-stream"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -2544,7 +2539,7 @@ SPEC CHECKSUMS:
   NitroGlassView: 60027e57e688ab014e50554db195a2b20000d91e
   NitroModules: a71a5ab2911caf79e45170e6e12475b5260a12d0
   NitroOrb: d15df790206d37b111baec205565d13c72c661e3
-  opencv-rne: 63e933ae2373fc91351f9a348dc46c3f523c2d3f
+  opencv-rne: 2305807573b6e29c8c87e3416ab096d09047a7a0
   RCTDeprecation: 7487d6dda857ccd4cb3dd6ecfccdc3170e85dcbc
   RCTRequired: 54128b7df8be566881d48c7234724a78cb9b6157
   RCTTypeSafety: d2b07797a79e45d7b19e1cd2f53c79ab419fe217
@@ -2578,7 +2573,7 @@ SPEC CHECKSUMS:
   React-logger: 7b234de35acb469ce76d6bbb0457f664d6f32f62
   React-Mapbuffer: fbe1da882a187e5898bdf125e1cc6e603d27ecae
   React-microtasksnativemodule: 76905804171d8ccbe69329fc84c57eb7934add7f
-  react-native-executorch: 99e991e55ab8fcfc8e53fc4f53116da49302d97c
+  react-native-executorch: 152772aecca0d660144a9a66730c41b8f1a777cb
   react-native-keyboard-controller: 0ea45376ff53c0f9118d9bc4a772aeae737e0d39
   react-native-mmkv: 3d69c8bbdbceb1c0d3754863ecffa6ec24e4be12
   react-native-safe-area-context: e4223e0c3d6770be30a9353ad2eaf99368b2f6e8
@@ -2615,7 +2610,6 @@ SPEC CHECKSUMS:
   ReactNativeBlur: da88db82546b9ff0c5bd0e9964b4be60f38e001f
   ReactNativeDependencies: ed6d1e64802b150399f04f1d5728ec16b437251e
   RNGestureHandler: 723f29dac55e25f109d263ed65cecc4b9c4bd46a
-  RNLiveAudioStream: 93ac2bb6065be9018d0b00157b220f11cebc1513
   RNReanimated: 3895a29fdf77bbe2a627e1ed599a5e5d1df76c29
   RNScreens: 61c18865ab074f4d995ac8d7cf5060522a649d05
   RNSVG: cf9ae78f2edf2988242c71a6392d15ff7dd62522

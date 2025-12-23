@@ -1,12 +1,13 @@
 import { Box } from "@/shared/ui";
 import { NitroOrb } from "react-native-nitro-orb";
 import { AISendInput } from "../ai-send-input/ai-send-input";
-import { withContextProvider } from "@/infra/context";
-import { AIScreenProvider } from "../../context";
-import { AIChatMessageTokenized } from "../ai-chat-message-tokenized/ai-chat-message-tokenized";
+
 import { useAIActionHandlerController } from "./ai-action-handler.controller";
 import { ProgressBar } from "@/shared/ui/ProgressBar";
 import { AICurrentMessage } from "../ai-current-message/ai-current-message";
+import Animated, { FadeInDown } from "react-native-reanimated";
+import { AIChatTypingIndicator } from "../ai-chat-typing-indicator";
+import { StyleSheet } from "react-native";
 
 function AIActionHandler() {
   const controller = useAIActionHandlerController();
@@ -50,15 +51,23 @@ function AIActionHandler() {
       />
       <Box mt="sp17" width={"100%"} alignItems="center">
         {controller.isGenerating ? (
-          <AIChatMessageTokenized />
+          <Animated.View entering={FadeInDown}>
+            <AIChatTypingIndicator />
+          </Animated.View>
         ) : (
-          <AICurrentMessage />
+          <AICurrentMessage currentAIMessage={controller.currentAIMessage} />
         )}
       </Box>
-
       <AISendInput onSend={controller.handleSendMessage} />
     </Box>
   );
 }
 
-export default withContextProvider(AIActionHandler, AIScreenProvider);
+const styles = StyleSheet.create({
+  blurContainer: {
+    height: 100,
+    paddingBottom: 40,
+  },
+});
+
+export default AIActionHandler;

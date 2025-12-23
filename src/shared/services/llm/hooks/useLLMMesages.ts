@@ -1,19 +1,19 @@
-import { LLMResponse, Message } from "@/infra/adapters/llm/types";
+import { Message, Tool } from "@/infra/adapters/llm/types";
 import { useEffect, useState } from "react";
 import { useLLM } from "@/infra/adapters/llm/hooks/useLLM";
 
 type Props = {
   systemPrompt: string;
-  context: Message[];
   onDownloadProgress: (progress: number) => void;
+  onExecuteToolCallback: (call: Tool) => Promise<string | null>;
   onTokenCallback?: (token: string) => void;
   tools: Object[];
 };
 
 export function useLLMMessages({
   systemPrompt,
-  context,
   onDownloadProgress,
+  onExecuteToolCallback,
   onTokenCallback,
   tools,
 }: Props) {
@@ -32,11 +32,9 @@ export function useLLMMessages({
           tokenCallback: onTokenCallback,
         });
         llm.configure({
+          initialMessageHistory:[],
           systemPrompt,
-          executeToolCallback: async (call) => {
-            console.log("TOKEN-CALLBACK", call);
-            return "";
-          },
+          executeToolCallback: onExecuteToolCallback,
           tools,
         });
         setIsReady(true);
@@ -55,57 +53,27 @@ export function useLLMMessages({
     };
   }, [llm]);
 
-  async function generate(content: string) {
-    if (!content.trim() || isGenerating || !llm.isInitialized()) {
-      return;
-    }
-    await llm.deleteMessage(0);
-    const userMessage: Message = {
-      role: "user",
-      content: content,
-    };
-
-    setError(null);
-    setIsGenerating(true);
-
+  async function sendMessage(content: string) {
     try {
-      const conversationHistory: Message[] = [
-        {
-          role: "system",
-          content: systemPrompt,
-        },
-        ...context,
-        userMessage,
-      ];
-
-      const response: LLMResponse = await llm.generate(conversationHistory);
-
-      if (response.error) {
-        setError(response.error);
-        return;
-      }
-
-      const assistantMessage: Message = {
-        role: "assistant",
-        content: response.content,
-      };
-
-      return assistantMessage;
+      setIsGenerating(true);
+      const messages = await llm.sendMessage(content);
+      return messages;
     } catch (err) {
-      const errorMessage =
-        err instanceof Error ? err.message : "Erro ao gerar resposta";
-
-      setError(errorMessage);
-      console.error("Erro ao enviar mensagem:", err);
+      console.error("Error on send message:", err);
     } finally {
       setIsGenerating(false);
     }
   }
 
+  function interrupt() {
+    llm.interrupt();
+    setIsGenerating(false);
+  }
   return {
+    sendMessage,
+    interrupt,
     isReady,
     error,
     isGenerating,
-    generate,
   };
 }

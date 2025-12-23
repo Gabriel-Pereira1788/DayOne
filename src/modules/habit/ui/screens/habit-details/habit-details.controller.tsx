@@ -34,7 +34,7 @@ export function useHabitDetailsController() {
         title: habit?.title || "",
         description: habit?.description || "",
         icon: habit?.icon || "",
-        targetDurationInDays: habit?.targetDurationInDays,
+        targetDurationInDays: habit?.targetDurationInDays || "30",
       },
     });
   }

@@ -17,7 +17,7 @@ export const habitSchema = z.object({
   icon: z.string().optional() as z.ZodType<IconProps["iconName"] | undefined>,
   targetDurationInDays: z.string().min(1).max(3, {
     message: "Target duration limit",
-  }),
+  }).default("30"),
   frequency: z.enum(["daily", "weekly", "monthly"]).default("daily"),
   dayOfWeek: z.number().min(0).max(6).optional(),
   dayOfMonth: z.number().min(1).max(31).optional(),
