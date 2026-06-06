@@ -2,7 +2,7 @@
   "expo": {
     "name": "DayOne - Habit Tracker",
     "slug": "DayOne",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "scheme": "dayone",
     "userInterfaceStyle": "automatic",
     "icon": "./src/assets/brand/launch-icon.png",

@@ -1,6 +1,6 @@
 import { Box, Icon } from "@/shared/ui";
-import { Pressable, TextInput } from "react-native";
-import { NitroGlassContainer, NitroGlassView } from "react-native-nitro-glass";
+import { Pressable, TextInput, View } from "react-native";
+
 import { AISendInputProps } from "./types";
 import { useAISendInputController } from "./ai-send-input.controller";
 
@@ -11,8 +11,7 @@ export function AISendInput({ onSend }: AISendInputProps) {
     });
 
   return (
-    <NitroGlassContainer
-      spacing={10}
+    <View
       style={{
         gap: 10,
         width: "100%",
@@ -28,9 +27,7 @@ export function AISendInput({ onSend }: AISendInputProps) {
           flex: 1,
         }}
       >
-        <NitroGlassView
-          effect="regular"
-          interactive
+        <View
           style={{
             borderRadius: 20,
             width: "100%",
@@ -53,13 +50,11 @@ export function AISendInput({ onSend }: AISendInputProps) {
               }}
             />
           </Box>
-        </NitroGlassView>
+        </View>
       </Pressable>
 
       <Pressable onPress={handleSend} testID="send-button">
-        <NitroGlassView
-          effect="regular"
-          interactive
+        <View
           style={{
             width: 50,
             height: 50,
@@ -72,8 +67,8 @@ export function AISendInput({ onSend }: AISendInputProps) {
             iconName={showBackToEnd ? "arrowDown" : "paperPlaneRight"}
             size={25}
           />
-        </NitroGlassView>
+        </View>
       </Pressable>
-    </NitroGlassContainer>
+    </View>
   );
 }

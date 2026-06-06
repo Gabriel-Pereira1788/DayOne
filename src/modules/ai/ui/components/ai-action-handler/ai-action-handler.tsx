@@ -1,5 +1,4 @@
 import { Box } from "@/shared/ui";
-import { NitroOrb } from "react-native-nitro-orb";
 import { AISendInput } from "../ai-send-input/ai-send-input";
 
 import { useAIActionHandlerController } from "./ai-action-handler.controller";
@@ -15,15 +14,6 @@ function AIActionHandler() {
   if (!controller.isReady) {
     return (
       <Box flex={1} alignItems="center" justifyContent="center" px="sp20">
-        <NitroOrb
-          showParticles={true}
-          size={150}
-          speed={90}
-          style={{
-            width: 200,
-            height: 200,
-          }}
-        />
         <Box width="100%" mb="sp10" gap="sp10">
           <ProgressBar progress={controller.downloadProgress} />
         </Box>

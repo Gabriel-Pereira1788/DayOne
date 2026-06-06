@@ -5,7 +5,6 @@ import Animated from "react-native-reanimated";
 import { Icon, IconProps } from "@/shared/ui/Icon";
 import { Box } from "@/shared/ui/Box";
 import { Text } from "../Text/Text";
-import { NitroGlassView } from "react-native-nitro-glass";
 
 type TabBarItemProps = {
   iconName: IconProps["iconName"];

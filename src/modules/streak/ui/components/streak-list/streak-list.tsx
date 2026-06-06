@@ -10,6 +10,7 @@ export function StreakList({ habits }: StreakListProps) {
     <Box width={"100%"} gap="sp10" mb="sp10">
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         snapToInterval={ITEM_WIDTH}
         decelerationRate="fast"
         getItemLayout={(data, index) => {
