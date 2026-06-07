@@ -48,6 +48,7 @@ export function RootStack() {
         </>
       )}
     >
+      <Stack.Screen name="(auth)/welcome" />
       <Stack.Screen name="(app)/dashboard" />
       <Stack.Screen name="(app)/habit-details/[id]/index" />
 
