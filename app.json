@@ -21,12 +21,7 @@
           "imageWidth": 200
         }
       ],
-      [
-        "@react-native-google-signin/google-signin",
-        {
-          "iosUrlScheme": "com.googleusercontent.apps.PLACEHOLDER_IOS_CLIENT_ID"
-        }
-      ],
+      "@react-native-google-signin/google-signin",
       "expo-apple-authentication"
     ],
     "android": {
