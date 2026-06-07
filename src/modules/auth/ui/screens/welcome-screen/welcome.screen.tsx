@@ -1,8 +1,11 @@
 import { Box, Button, Text } from "@/shared/ui";
-import { Image } from "react-native";
+import { Image, Platform } from "react-native";
 import Animated, { FadeInDown, FadeInLeft } from "react-native-reanimated";
+import { useWelcomeController } from "./welcome.controller";
 
 export function WelcomeScreen() {
+  const { handleGoogleSignIn, handleAppleSignIn, isLoading } = useWelcomeController();
+
   return (
     <Box flex={1} alignItems="center" justifyContent="space-between" pt="sp28">
       <Box
@@ -32,19 +35,25 @@ export function WelcomeScreen() {
         </Box>
       </Box>
       <Box gap="sp10" width={"100%"}>
-        <Button
-          leftIconName="appleLogo"
-          variant="filled"
-          enableGradient
-          text="Sign In With Apple"
-          onPress={() => {}}
-        />
+        {Platform.OS === 'ios' && (
+          <Button
+            leftIconName="appleLogo"
+            variant="filled"
+            enableGradient
+            text="Sign In With Apple"
+            loading={isLoading}
+            disabled={isLoading}
+            onPress={() => handleAppleSignIn()}
+          />
+        )}
         <Button
           leftIconName="googleLogo"
           variant="outline"
           enableGradient
           text="Sign In With Google"
-          onPress={() => {}}
+          loading={isLoading}
+          disabled={isLoading}
+          onPress={() => handleGoogleSignIn()}
         />
       </Box>
     </Box>
