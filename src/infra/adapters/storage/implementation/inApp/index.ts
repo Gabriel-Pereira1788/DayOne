@@ -2,7 +2,7 @@ import { StorageImpl } from "../../types";
 
 const mockedStorage = new Map<string, string>();
 
-async function setItem<T>(key: string, value: T): Promise<void> {
+function setItem<T>(key: string, value: T): void {
   mockedStorage.set(key, JSON.stringify(value));
 }
 
