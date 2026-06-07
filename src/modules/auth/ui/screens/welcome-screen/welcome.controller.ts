@@ -2,15 +2,10 @@ import { Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSignInWithGoogle } from '@/modules/auth/domain/useCases/sign-in-with-google';
 import { useSignInWithApple } from '@/modules/auth/domain/useCases/sign-in-with-apple';
-
-const CANCELLED_CODE = 'SIGN_IN_CANCELLED';
+import { AuthCancelledError } from '@/infra/adapters/auth/types';
 
 function isCancellation(error: unknown): boolean {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    (error as { code?: string }).code === CANCELLED_CODE
-  );
+  return error instanceof AuthCancelledError;
 }
 
 export function useWelcomeController() {
