@@ -20,13 +20,21 @@
           },
           "imageWidth": 200
         }
-      ]
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.PLACEHOLDER_IOS_CLIENT_ID"
+        }
+      ],
+      "expo-apple-authentication"
     ],
     "android": {
       "package": "com.bytebuilder123.DayOne"
     },
     "ios": {
-      "bundleIdentifier": "com.bytebuilder123.DayOneHabitTracker"
+      "bundleIdentifier": "com.bytebuilder123.DayOneHabitTracker",
+      "usesAppleSignIn": true
     }
   }
 }
