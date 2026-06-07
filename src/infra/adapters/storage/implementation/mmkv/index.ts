@@ -15,8 +15,8 @@ async function getItem<T>(key?: StorageKeys) {
   return result as T;
 }
 
-function getItemSync<T>(key?: StorageKeys): T | null {
-  const data = mmkv.getString(key!);
+function getItemSync<T>(key: StorageKeys): T | null {
+  const data = mmkv.getString(key);
   if (!data) {
     return null;
   }
