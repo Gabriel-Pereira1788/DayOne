@@ -11,6 +11,7 @@ import { rnScheduleNotificationImpl } from "@/infra/adapters/schedule-notificati
 import { execuTorchImpl } from "@/infra/adapters/llm/implementation/executorch";
 import { DIProvider } from "@/infra/DI/context";
 import { DIKeys } from "@/infra/DI/types";
+import { authServiceImpl } from "@/infra/adapters/auth/implementation";
 export const queryClient = new QueryClient();
 
 export default function RootLayout() {
@@ -30,6 +31,10 @@ export default function RootLayout() {
                 container.registerService(
                   DIKeys.ScheduleNotification,
                   rnScheduleNotificationImpl,
+                );
+                container.registerService(
+                  DIKeys.AuthService,
+                  authServiceImpl,
                 );
               }}
             >
