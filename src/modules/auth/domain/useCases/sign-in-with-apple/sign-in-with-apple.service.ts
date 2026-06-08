@@ -1,7 +1,14 @@
-import type { SocialAuthResult } from '@/infra/adapters/auth/types';
+import type { AuthServiceImpl } from "@/infra/adapters/auth/types";
+import { HttpClientImpl } from "@/infra/adapters/http-client";
+import { AuthResponse } from "../../auth.model";
 
-export async function signInWithAppleService(): Promise<SocialAuthResult> {
-  // TODO: replace with real adapter call when backend is ready
-  // return authService.signInWithApple();
-  return { token: 'mock-token', provider: 'apple' };
+export async function signInWithAppleService(
+  authService: AuthServiceImpl,
+  httpClientService: HttpClientImpl,
+): Promise<AuthResponse> {
+  const result = await authService.signInWithApple();
+  const response = await httpClientService.post<AuthResponse>("auth/apple", {
+    idToken: result.token,
+  });
+  return { AccessToken: response.data.AccessToken, User: response.data.User };
 }

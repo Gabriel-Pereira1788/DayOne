@@ -23,6 +23,7 @@ import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/
 import { inAppScheduleNotification } from "@/infra/adapters/schedule-notification/implementation/inApp/in-app-schedule-notification";
 import { inAppLLM } from "@/infra/adapters/llm/implementation/inApp";
 import { inAppAuth } from "@/infra/adapters/auth/implementation/inApp";
+import { inAppHttpClient } from "@/infra/adapters/http-client/implementation/inApp";
 
 const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -53,6 +54,7 @@ export function Wrapper({ children }: React.PropsWithChildren) {
               DIKeys.Repository,
               inAppRepositoryBuilder,
             );
+            container.registerService(DIKeys.HttpClient, inAppHttpClient);
           }}
         >
           <KeyboardProvider>{children}</KeyboardProvider>

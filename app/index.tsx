@@ -6,7 +6,7 @@ export default function Index() {
   const storage = useStorage();
   const session = storage.getItemSync(StorageKeys.SESSION);
 
-  if (session) {
+  if (!!session) {
     return <Redirect href={"/(app)/dashboard"} />;
   }
 
