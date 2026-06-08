@@ -7,6 +7,7 @@ import { buildGradientVariant } from "./library/buildGradientVariant";
 
 type ButtonContainerProps = {
   rightIconName?: boolean;
+  leftIconName?: boolean;
   enableGradient?: boolean;
   variant: ButtonProps["variant"];
 } & React.PropsWithChildren;
@@ -14,6 +15,7 @@ export function ButtonContainer({
   children,
   enableGradient = false,
   rightIconName,
+  leftIconName,
   variant,
 }: ButtonContainerProps) {
   if (enableGradient) {
@@ -21,7 +23,7 @@ export function ButtonContainer({
     return (
       <BoxGradient
         colors={colors}
-        flexDirection={rightIconName ? "row" : "column"}
+        flexDirection={(rightIconName || leftIconName) ? "row" : "column"}
         gap="sp10"
         width={"100%"}
         height={"100%"}

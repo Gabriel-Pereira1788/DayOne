@@ -37,3 +37,6 @@ yarn-error.*
 .lock
 bun.lock
 yarn.lock
+
+.env
+.claude/tmp

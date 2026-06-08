@@ -15,6 +15,14 @@ async function getItem<T>(key?: StorageKeys) {
   return result as T;
 }
 
+function getItemSync<T>(key: StorageKeys): T | null {
+  const data = mmkv.getString(key);
+  if (!data) {
+    return null;
+  }
+  return JSON.parse(data) as T;
+}
+
 function removeItem(key?: StorageKeys) {
   mmkv.delete(key!);
 }
@@ -26,6 +34,7 @@ function clearAll() {
 export const mmkvImpl: StorageImpl = {
   setItem,
   getItem,
+  getItemSync,
   removeItem,
   clearAll,
 };

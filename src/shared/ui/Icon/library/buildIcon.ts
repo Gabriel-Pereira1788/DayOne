@@ -41,10 +41,15 @@ import Clock from "phosphor-react-native/src/icons/Clock";
 import Microphone from "phosphor-react-native/src/icons/Microphone";
 import Brain from "phosphor-react-native/src/icons/Brain";
 import { IconProps } from "../Icon";
+import { AppleLogoIcon } from "@/assets/icons/apple-logo";
+import { GoogleLogoIcon } from "@/assets/icons/google-icon";
 
 export const mappedIcons = {
   email: Email,
   lock: Lock,
+  appleLogo: AppleLogoIcon,
+  googleLogo: GoogleLogoIcon,
+
   eye: Eye,
   eyeClosed: EyeClosed,
   eyeSlash: EyeSlash,

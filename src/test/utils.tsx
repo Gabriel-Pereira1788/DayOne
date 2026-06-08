@@ -12,6 +12,7 @@ import { RootStack } from "../shared/navigation/root";
 
 import { StorageKeys } from "@/infra/adapters/storage/types";
 import { QueryKeys } from "@/infra/types";
+import Welcome from "../../app/(auth)/welcome";
 import Dashboard from "../../app/(app)/dashboard";
 import NewHabit from "../../app/(app)/new-habit";
 import EditHabit from "../../app/(app)/edit-habit";
@@ -21,6 +22,8 @@ import { DIKeys } from "@/infra/DI/types";
 import { inAppRepositoryBuilder } from "@/infra/repository/implementation/inApp/in-app-repository";
 import { inAppScheduleNotification } from "@/infra/adapters/schedule-notification/implementation/inApp/in-app-schedule-notification";
 import { inAppLLM } from "@/infra/adapters/llm/implementation/inApp";
+import { inAppAuth } from "@/infra/adapters/auth/implementation/inApp";
+import { inAppHttpClient } from "@/infra/adapters/http-client/implementation/inApp";
 
 const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -40,6 +43,7 @@ export function Wrapper({ children }: React.PropsWithChildren) {
       <ThemeProvider theme={theme}>
         <DIProvider
           config={(container) => {
+            container.registerService(DIKeys.AuthService, inAppAuth);
             container.registerService(DIKeys.LLMService, inAppLLM);
             container.registerService(DIKeys.Storage, inAppStorage);
             container.registerService(
@@ -50,6 +54,7 @@ export function Wrapper({ children }: React.PropsWithChildren) {
               DIKeys.Repository,
               inAppRepositoryBuilder,
             );
+            container.registerService(DIKeys.HttpClient, inAppHttpClient);
           }}
         >
           <KeyboardProvider>{children}</KeyboardProvider>
@@ -94,6 +99,7 @@ export function renderApp({
     {
       _layout: () => <RootStack />,
 
+      "(auth)/welcome": () => <Welcome />,
       "(app)/dashboard": () => <Dashboard />,
       "(app)/new-habit": () => <NewHabit />,
       "(app)/edit-habit/index": () => <EditHabit />,

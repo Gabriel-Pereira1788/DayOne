@@ -15,6 +15,7 @@ export type ButtonProps = {
   text: string;
   loading?: boolean;
   variant?: "outline" | "filled" | "transparent" | "elevated";
+  leftIconName?: IconName;
   rightIconName?: IconName;
   enableGradient?: boolean;
 } & TouchableOpacityProps;
@@ -23,6 +24,7 @@ export function Button({
   text,
   loading,
   variant = "filled",
+  leftIconName,
   rightIconName,
   disabled,
   enableGradient = false,
@@ -48,8 +50,12 @@ export function Button({
       <ButtonContainer
         variant={variant}
         rightIconName={!!rightIconName}
+        leftIconName={!!leftIconName}
         enableGradient={enableGradient}
       >
+        <If condition={!!leftIconName && !loading}>
+          <Icon iconName={leftIconName!} color={_variant.textColor} />
+        </If>
         <If
           condition={!!loading}
           elseRender={

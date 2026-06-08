@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import Animated from "react-native-reanimated";
 import { Box, BoxProps } from "../Box";
+import { useTheme } from "@/shared/helpers";
 
 const TouchableAnimated = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -17,12 +18,16 @@ export function TouchableBounce({
   ...touchableProps
 }: React.PropsWithChildren<TouchableBounceProps>) {
   const [pressed, setPressed] = useState(false);
+  const theme = useTheme();
   return (
     <TouchableAnimated
       activeOpacity={1}
       key={touchableProps.key}
       style={{
         width: boxProps?.width,
+        borderRadius: boxProps?.borderRadius
+          ? theme.borderRadii[boxProps.borderRadius]
+          : undefined,
         borderCurve: "continuous",
         boxShadow: "0 5px 10px rgba(0,0,0,0.2)",
         transitionDuration: 100,

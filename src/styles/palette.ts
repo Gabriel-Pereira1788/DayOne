@@ -14,9 +14,8 @@ export const palette = {
     border: "#2E2E2E", // Bordas sutis, linhas divisórias
   },
 
-  // Texto
   text: {
-    primary: "#FFFFFF", // Texto principal (títulos, corpo)
+    primary: "#FFFFFF",
     secondary: "#A6A6A6", // Texto secundário (labels, subtítulos)
     tertiary: "#6E6E6E", // Texto de apoio / desabilitado
     placeholder: "#5C5C5C", // Placeholders de input
